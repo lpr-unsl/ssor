@@ -1,6 +1,6 @@
-# LPR HOWTO - Como comenzar a trabajar con LPR  
+# LPR HOWTO - Cómo comenzar a trabajar con LPR  
 
-se puede trabajar de varias maneras Dependiendo de la necesidad:
+Se puede trabajar de varias maneras dependiendo de la necesidad:
 ### A) Trabajo en distintos lugares, sin acceder/modificar el disco de cada PC
 1. Requisitos:
   - LiveCD (DVD) o USB (4G) con sistema operativo LPR
@@ -11,41 +11,41 @@ se puede trabajar de varias maneras Dependiendo de la necesidad:
 
   - Usar k3b u otra herramienta para grabar la imagen ISO descargada en un DVD o USB
 
-  - Bootear la maquina desde DVD o USB, segun corresponda 
+  - Bootear la máquina desde DVD o USB, según corresponda 
   
-3. Continuar en la seccion **"D"**  
+3. Continuar en la sección **"D"**  
 
 ### B) Trabajo en distintos lugares, pudiendo acceder/modificar el disco de cada PC
 1. Requisitos:
-  - Virtualizacion de sistema operativo LPR (Virtualbox, Vmware,etc)
+  - Virtualización de sistema operativo LPR (Virtualbox, Vmware,etc)
   - USB (4G) para almacenar imagenes y llevarlas a los distintos lugares  
   
 2. Configuracion inicial:  
   - La imagen de LPR puede ser descargada desde < http://www.dirinfo.unsl.edu.ar/lpr/ >  
-  - Usar el virtualizador para crear una maquina virutal llamada LPR con las siguientes caracteristicas:
+  - Usar el virtualizador para crear una maquina virtual llamada LPR con las siguientes características:
     - Tipo Linux
     - ubuntu 64 bits
     - al menos 2G de ram
     - En almacenamiento conectar la imagen ISO descargada al la lectora de DVD
-    - Configurar el booteo de la maquina virtual desde DVD
+    - Configurar el booteo de la máquina virtual desde DVD
     - Conectar el USB a la maquina virtual 
-  - Bootear la maquina virtual
+  - Bootear la máquina virtual
 3. Continuar en a la seccion **"D"**
 
 ### C) Trabajo en un solo lugar, pudiendo acceder/modificar el dico de cada PC
 1. Requisitos:
-  - Virtualizacion de sistema operativo LPR (Virtualbox, Vmware,etc)
-  - Espacio en disco rpigido al menos 4Gb) para crear una Particion virtual
+  - Virtualización de sistema operativo LPR (Virtualbox, Vmware,etc)
+  - Espacio en disco rígido (al menos 4Gb) para crear una Partición virtual
 
 2. Configuracion inicial:  
   - La imagen de LPR puede ser descargada desde < http://www.dirinfo.unsl.edu.ar/lpr/ >
-  - Usar el virtualizador para crear una maquina virutal llamada LPR con las siguientes caracteristicas:
+  - Usar el virtualizador para crear una máquina virtual llamada LPR con las siguientes características:
     - Tipo Linux
     - ubuntu 64 bits
     - al menos 2G de ram
     - En almacenamiento conectar la imagen ISO al la lectora de DVD
     - Configurar el booteo de la maquina virtual desde DVD
-    - crear un disco virtual tipo vdi , dinamico de al menos 4Gb  
+    - crear un disco virtual tipo vdi , dinámico de al menos 4Gb  
   - Bootear la maquina virtual 
   
   3. Continuar en la seccion **"D"**
@@ -55,8 +55,8 @@ se puede trabajar de varias maneras Dependiendo de la necesidad:
   Esta tarea se ejecutara **SOLO una vez** en cada una de las maquinas que quiera utilizar para realizar los practicos.
   - loguearse con usuario *root* password *lprlpr*
   - En el menu, seleccionar aplications -> terminal emulator
-  - Averiguar el nombre de la particion que se usará para alamcenar las imagenes de docker
-    - Para ello escribir el siguente comando en la terminal y tomar nota del nombre del disco de 4G que creamos o el usb que conectamos
+  - Averiguar el nombre de la partición que se usará para almacenar las imagenes de docker
+    - Para ello escribir el siguiente comando en la terminal y tomar nota del nombre del disco de 4G que creamos o el usb que conectamos
       - fdisk -l
   - Cambiarse al directorio *Documents* e inicializar las imagenes docker.
     - Para ello ejecutar los siguentes comandos en la terminal:
@@ -75,7 +75,7 @@ se puede trabajar de varias maneras Dependiendo de la necesidad:
       - cd NOMBRE_DEL_PRACTICO
       - ./iniciar.sh
     
-  - Una vez que hicieron modificaciones en la configuracion de los servicios, pueden guardar el estado.
+  - Una vez que hicieron modificaciones en la configuración de los servicios, pueden guardar el estado.
     - ejecutando el comando:
       - /pausar.sh
     - el script ./pausar.sh hace commit de los contenedores usados a nuevas imagenes llamadas "practico"-nombre_del_contenedor
