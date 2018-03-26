@@ -20,6 +20,9 @@ echo "listo merlo"
 docker save -o $1/dhcp-clientelanuno.tar dhcp-clientelanuno
 gzip $1/dhcp-clientelanuno.tar
 echo "listo clientelan1"
+docker save -o $1/dhcp-sanfelipe.tar dhcp-sanfelipe
+gzip $1/dhcp-sanfelipe.tar
+echo "listo sanfelipe"
 
 
 #para saber los nombres de los contenedores que estan corriendo

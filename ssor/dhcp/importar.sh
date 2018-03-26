@@ -25,6 +25,7 @@ then
 	docker rmi dhcp-potrero
 	docker rmi dhcp-merlo
 	docker rmi dhcp-clientelanuno
+	docker rmi dhcp-sanfelipe
 
 fi
 
@@ -43,6 +44,9 @@ echo "listo merlo"
 gunzip $1/dhcp-clientelanuno.tar
 docker load -i $1/dhcp-clientelanuno.tar
 echo "listo clientelan1"
+gunzip $1/dhcp-sanfelipe.tar
+docker load -i $1/dhcp-sanfelipe.tar
+echo "listo sanfelipe"
 
 
 #para saber los nombres de los contenedores que estan corriendo

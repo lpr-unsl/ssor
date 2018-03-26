@@ -8,6 +8,7 @@ docker commit potrero dhcp-potrero
 #docker commit laflorida dhcp-laflorida
 docker commit merlo dhcp-merlo
 docker commit clienteLan1 dhcp-clientelanuno
+docker commit sanfelipe dhcp-sanfelipe
 
 
 docker rm $(docker ps -aq)

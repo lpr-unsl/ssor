@@ -51,14 +51,14 @@ fi
 
 
 
-docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN cliente:1.4 bash
-docker run --detach --hostname merlo -it --name merlo --cap-add NET_ADMIN cliente-cli:1.4 bash
-docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN router:1.4 bash
-docker run --detach --hostname laflorida -it --name laflorida --cap-add NET_ADMIN router:1.4 bash
-docker run --detach --hostname desaguadero -it --name desaguadero --cap-add NET_ADMIN router:1.4 bash
-docker run --detach --hostname nogoli -it --name nogoli --cap-add NET_ADMIN --privileged servidor:1.4 bash
-docker run --detach --hostname carrizal -it --name carrizal --cap-add NET_ADMIN router:1.4 bash
-docker run --detach --hostname laslenias -it --name laslenias --cap-add NET_ADMIN cliente:1.4 bash
+docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN cliente:1.5 bash
+docker run --detach --hostname merlo -it --name merlo --cap-add NET_ADMIN cliente-cli:1.5 bash
+docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN router:1.5 bash
+docker run --detach --hostname laflorida -it --name laflorida --cap-add NET_ADMIN router:1.5 bash
+docker run --detach --hostname desaguadero -it --name desaguadero --cap-add NET_ADMIN router:1.5 bash
+docker run --detach --hostname nogoli -it --name nogoli --cap-add NET_ADMIN --privileged servidor:1.5 bash
+docker run --detach --hostname carrizal -it --name carrizal --cap-add NET_ADMIN router:1.5 bash
+docker run --detach --hostname laslenias -it --name laslenias --cap-add NET_ADMIN cliente:1.5 bash
 
 docker exec -it latoma ip ro del default
 docker exec -it merlo ip ro del default
@@ -84,7 +84,7 @@ docker exec -it laslenias ip ro del default
 #pipework lan3 -i lan3 laslenias 0.0.0.0/24
 
 pipework lan2 -i lan2 latoma 172.16.4.10/23
-pipework lan1 -i lan1 merlo 192.168.1.48/24
+pipework lan1 -i lan1 merlo 192.168.1.58/24
 pipework lan1 -i lan1 potrero 192.168.1.1/24
 pipework lan2 -i lan2 potrero 172.16.4.1/23
 pipework ppp1 -i ppp1 potrero 200.8.4.18/30

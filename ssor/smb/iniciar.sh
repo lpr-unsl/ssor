@@ -44,8 +44,8 @@ then
 fi
 
 
-docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN cliente:1.4 bash
-docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN cliente-cli:1.4 bash
+docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN cliente:1.5 bash
+docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN cliente-cli:1.5 bash
 
 docker exec -it latoma ip ro del default
 docker exec -it potrero ip ro del default

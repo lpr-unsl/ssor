@@ -35,6 +35,7 @@ docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN --
 #docker run --detach --hostname laflorida -it --name laflorida --cap-add NET_ADMIN --privileged dhcp-laflorida bash
 docker run --detach --hostname merlo -it --name merlo --cap-add NET_ADMIN dhcp-merlo bash
 docker run --detach --hostname clienteLan1 -it --name clienteLan1 --cap-add NET_ADMIN dhcp-clientelanuno bash
+docker run --detach --hostname sanfelipe -it --name sanfelipe --cap-add NET_ADMIN dhcp-sanfelipe bash
 
 docker exec -it latoma ip ro del default
 docker exec -it clienteLan2 ip ro del default
@@ -42,6 +43,7 @@ docker exec -it potrero ip ro del default
 #docker exec -it laflorida ip ro del default
 docker exec -it merlo ip ro del default
 docker exec -it clienteLan1 ip ro del default
+docker exec -it sanfelipe ip ro del default
 
 pipework lan2 -i lan2 latoma 0.0.0.0/24
 pipework lan2 -i lan2 clienteLan2 0.0.0.0/24
@@ -51,6 +53,7 @@ pipework lan1 -i lan1 potrero 0.0.0.0/24
 #pipework ppp1 -i ppp1 laflorida 0.0.0.0/24
 pipework lan1 -i lan1 merlo  0.0.0.0/24
 pipework lan1 -i lan1 clienteLan1 0.0.0.0/24
+pipework lan2 -i lan2 sanfelipe 0.0.0.0/24
 
 
 xterm -T "latoma" -fa monaco -fs 11 -e "docker attach latoma" &
@@ -59,6 +62,7 @@ xterm -T "potrero" -fa monaco -fs 11 -e "docker attach potrero" &
 #xterm -T "laflorida" -fa monaco -fs 11 -e "docker attach laflorida" &
 xterm -T "merlo" -fa monaco -fs 11 -e "docker attach merlo" &
 xterm -T "clienteLan1" -fa monaco -fs 11 -e "docker attach clienteLan1" &
+xterm -T "sanfelipe" -fa monaco -fs 11 -e "docker attach sanfelipe" &
 
 
 #para saber los nombres de los contenedores que estan corriendo
