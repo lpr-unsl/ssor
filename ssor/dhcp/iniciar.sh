@@ -75,8 +75,8 @@ pipework lan1 -i lan1 clienteLan1 0.0.0.0/24
 pipework lan2 -i lan2 sanfelipe 0.0.0.0/24
 
 #por problemas de checksum de udp
-docker exec -it potrero ethtool -K lan2 tx off
-docker exec -it sanfelipe ethtool -K lan2 tx off
+docker exec -it potrero ethtool -K lan2 tx off 1>/dev/null
+docker exec -it sanfelipe ethtool -K lan2 tx off 1>/dev/null
 
 xterm -T "latoma" -fa monaco -fs 11 -e "docker attach latoma" &
 xterm -T "clienteLan2" -fa monaco -fs 11 -e "docker attach clienteLan2" &
