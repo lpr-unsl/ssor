@@ -43,3 +43,4 @@ host
 varios
 	Cambiar en el grafico de smtp la red LAN2, está mal escrita -> 1.6
 	Agregado practico de squid, firewall y vpn -> 1.6
+	Modificar scripts de "reanudar" para que tenga la configuracion de red anterior
