@@ -38,3 +38,5 @@ host
 	apt-get install samba   para poder probar desde windows -> 1.4
 	apt-get install smbclient -> 1.4
 	dpkg-reconfigure keyboard-configuration (spanish) -> 1.5
+
+Cambiar en el grafico de smtp la red LAN2, está mal escrita
