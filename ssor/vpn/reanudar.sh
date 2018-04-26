@@ -44,7 +44,6 @@ docker exec -it merlo ip ro del default
 docker exec -it potrero ip ro del default
 docker exec -it laflorida ip ro del default
 docker exec -it desaguadero ip ro del default
-docker exec -it nogoli ip ro del default
 docker exec -it carrizal ip ro del default
 docker exec -it laslenias ip ro del default
 

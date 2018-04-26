@@ -7,7 +7,6 @@ docker commit merlo vpn-merlo
 docker commit potrero vpn-potrero
 docker commit laflorida vpn-laflorida
 docker commit desaguadero vpn-desaguadero
-docker commit nogoli vpn-nogoli
 docker commit carrizal vpn-carrizal
 docker commit laslenias vpn-laslenias
 

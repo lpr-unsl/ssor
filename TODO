@@ -40,6 +40,6 @@ host
 	apt-get install smbclient -> 1.4
 	dpkg-reconfigure keyboard-configuration (spanish) -> 1.5
 
-Cambiar en el grafico de smtp la red LAN2, está mal escrita -> 1.6
-
-Agregado practico de squid, firewall y vpn -> 1.6
+varios
+	Cambiar en el grafico de smtp la red LAN2, está mal escrita -> 1.6
+	Agregado practico de squid, firewall y vpn -> 1.6
