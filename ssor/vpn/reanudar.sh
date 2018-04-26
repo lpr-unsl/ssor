@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 
 puente=`brctl show | egrep lan1`
 if [ -z "$puente" ]
@@ -11,6 +11,7 @@ then
 	brctl addbr man1
 fi
 
+
 ip link set dev lan1 up
 ip link set dev lan2 up
 ip link set dev lan3 up
@@ -18,47 +19,25 @@ ip link set dev ppp1 up
 ip link set dev ppp2 up
 ip link set dev man1 up
 
-montaje=`df -h | egrep docker`
-if [ -z "$montaje" ]
-then
-        echo -n " falta montar la particion con las imagenes, especifique el dispositivo: "
-	read dispositivo
-	service docker stop
-	mount $dispositivo /var/lib/docker
-	service docker start
-fi
-
 contenedores=`docker ps -aq|wc -l`
 
 if [ $contenedores -gt 0 ]
 then
+
 	docker stop $(docker ps -aq)
 	docker rm $(docker ps -aq)
-fi
 
-imagenes=`docker images| egrep http | wc -l`
-if [ $imagenes -gt 0 ]
-then
-	docker rmi http-latoma
-	docker rmi http-merlo
-	docker rmi http-potrero
-	docker rmi http-laflorida
-	docker rmi http-desaguadero
-	docker rmi http-nogoli
-	docker rmi http-carrizal
-	docker rmi http-laslenias
 fi
 
 
 
-docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN cliente:1.5 bash
-docker run --detach --hostname merlo -it --name merlo --cap-add NET_ADMIN cliente-cli:1.5 bash
-docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN router:1.5 bash
-docker run --detach --hostname laflorida -it --name laflorida --cap-add NET_ADMIN router:1.5 bash
-docker run --detach --hostname desaguadero -it --name desaguadero --cap-add NET_ADMIN router:1.5 bash
-docker run --detach --hostname nogoli -it --name nogoli --cap-add NET_ADMIN --privileged servidor:1.5 bash
-docker run --detach --hostname carrizal -it --name carrizal --cap-add NET_ADMIN router:1.5 bash
-docker run --detach --hostname laslenias -it --name laslenias --cap-add NET_ADMIN cliente:1.5 bash
+docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN vpn-latoma bash
+docker run --detach --hostname merlo -it --name merlo --cap-add NET_ADMIN vpn-merlo bash
+docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN vpn-potrero bash
+docker run --detach --hostname laflorida -it --name laflorida --cap-add NET_ADMIN vpn-laflorida bash
+docker run --detach --hostname desaguadero -it --name desaguadero --cap-add NET_ADMIN vpn-desaguadero bash
+docker run --detach --hostname carrizal -it --name carrizal --cap-add NET_ADMIN vpn-carrizal bash
+docker run --detach --hostname laslenias -it --name laslenias --cap-add NET_ADMIN vpn-laslenias bash
 
 docker exec -it latoma ip ro del default
 docker exec -it merlo ip ro del default
@@ -90,7 +69,6 @@ pipework lan2 -i lan2 potrero 172.16.4.1/23
 pipework ppp1 -i ppp1 potrero 200.8.4.18/30
 pipework ppp1 -i ppp1 laflorida 200.8.4.17/30
 pipework man1 -i man1 laflorida 8.8.8.14/28
-pipework man1 -i man1 nogoli 8.8.8.8/28
 pipework man1 -i man1 desaguadero 8.8.8.1/28
 pipework ppp2 -i ppp2 desaguadero 170.0.2.6/30
 pipework ppp2 -i ppp2 carrizal 170.0.2.5/30
@@ -112,16 +90,11 @@ docker exec -it desaguadero ip ro add 192.168.1.0/24 via 8.8.8.14
 docker exec -it desaguadero ip ro add 172.16.4.0/23 via 8.8.8.14
 docker exec -it desaguadero ip ro add 10.22.0.0/16 via 170.0.2.5
 
-docker exec -it nogoli ip ro add 192.168.1.0/24 via 8.8.8.14
-docker exec -it nogoli ip ro add 172.16.4.0/23 via 8.8.8.14
-docker exec -it nogoli ip ro add 10.22.0.0/16 via 8.8.8.1
-
 xterm -T "latoma" -fa monaco -fs 11 -e "docker attach latoma" &
 xterm -T "merlo" -fa monaco -fs 11 -e "docker attach merlo" &
 xterm -T "potrero" -fa monaco -fs 11 -e "docker attach potrero" &
 xterm -T "laflorida" -fa monaco -fs 11 -e "docker attach laflorida" &
 xterm -T "desaguadero" -fa monaco -fs 11 -e "docker attach desaguadero" &
-xterm -T "nogoli" -fa monaco -fs 11 -e "docker attach nogoli" &
 xterm -T "carrizal" -fa monaco -fs 11 -e "docker attach carrizal" &
 xterm -T "laslenias" -fa monaco -fs 11 -e "docker attach laslenias" &
 
