@@ -39,12 +39,12 @@ fi
 imagenes=`docker images| egrep squid | wc -l`
 if [ $imagenes -gt 0 ]
 then
-	docker rmi http-latoma
-	docker rmi http-merlo
-	docker rmi http-potrero
-	docker rmi http-laflorida
-	docker rmi http-desaguadero
-	docker rmi http-nogoli
+	docker rmi squid-latoma
+	docker rmi squid-merlo
+	docker rmi squid-potrero
+	docker rmi squid-laflorida
+	docker rmi squid-desaguadero
+	docker rmi squid-nogoli
 fi
 
 

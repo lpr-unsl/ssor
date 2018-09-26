@@ -16,37 +16,21 @@ then
 fi
 
 
-imagenes=`docker images| egrep dns | wc -l`
+imagenes=`docker images| egrep smb | wc -l`
 if [ $imagenes -gt 0 ]
 then
 
-	docker rmi dns-latoma 
-	docker rmi dns-laflorida
-	docker rmi dns-nogoli
-	docker rmi dns-desaguadero
-	docker rmi dns-potrero
-	docker rmi dns-merlo
+	docker rmi smb-latoma 
+	docker rmi smb-potrero
 
 fi
 
-gunzip $1/dns-latoma.tar.gz
-docker load -i $1/dns-latoma.tar
+gunzip $1/smb-latoma.tar.gz
+docker load -i $1/smb-latoma.tar
 echo "listo latoma"
-gunzip $1/dns-laflorida.tar
-docker load -i $1/dns-laflorida.tar
-echo "listo laflorida"
-gunzip $1/dns-nogoli.tar
-docker load -i $1/dns-nogoli.tar
-echo "listo nogoli"
-gunzip $1/dns-desaguadero.tar
-docker load -i $1/dns-desaguadero.tar
-echo "listo desaguadero"
-gunzip $1/dns-potrero.tar
-docker load -i $1/dns-potrero.tar
+gunzip $1/smb-potrero.tar
+docker load -i $1/smb-potrero.tar
 echo "listo potrero"
-gunzip $1/dns-merlo.tar
-docker load -i $1/dns-merlo.tar
-echo "listo merlo"
 
 
 #para saber los nombres de los contenedores que estan corriendo

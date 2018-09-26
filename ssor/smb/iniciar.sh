@@ -36,7 +36,7 @@ then
 	docker rm $(docker ps -aq)
 fi
 
-imagenes=`docker images| egrep dns | wc -l`
+imagenes=`docker images| egrep smb | wc -l`
 if [ $imagenes -gt 0 ]
 then
 	docker rmi smb-latoma

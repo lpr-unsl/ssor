@@ -2,12 +2,8 @@
 docker stop $(docker ps -aq)
 
 
-docker commit latoma dns-latoma
-docker commit laflorida dns-laflorida
-docker commit nogoli dns-nogoli
-docker commit desaguadero dns-desaguadero
-docker commit potrero dns-potrero
-docker commit merlo dns-merlo
+docker commit latoma smb-latoma
+docker commit potrero smb-potrero
 
 
 

@@ -30,37 +30,25 @@ then
 fi
 
 
-docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN dns-latoma bash
-docker run --detach --hostname laflorida -it --name laflorida --cap-add NET_ADMIN --privileged dns-laflorida bash
-docker run --detach --hostname nogoli -it --name nogoli --cap-add NET_ADMIN --privileged dns-nogoli bash
-docker run --detach --hostname desaguadero -it --name desaguadero --cap-add NET_ADMIN --privileged dns-desaguadero bash
-docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN --privileged dns-potrero bash
-docker run --detach --hostname merlo -it --name merlo --cap-add NET_ADMIN dns-merlo bash
+docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN smb-latoma bash
+docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN --privileged smb-potrero bash
 
 docker exec -it latoma ip ro del default
-docker exec -it laflorida ip ro del default
-docker exec -it nogoli ip ro del default
-docker exec -it desaguadero ip ro del default
 docker exec -it potrero ip ro del default
-docker exec -it merlo ip ro del default
 
-pipework lan2 -i lan2 latoma 0.0.0.0/24
-pipework lan2 -i lan2 potrero 0.0.0.0/24
-pipework lan1 -i lan1 merlo  0.0.0.0/24
-pipework lan1 -i lan1 potrero 0.0.0.0/24
-pipework ppp1 -i ppp1 potrero 0.0.0.0/24
-pipework ppp1 -i ppp1 laflorida 0.0.0.0/24
-pipework man1 -i man1 laflorida 0.0.0.0/24
-pipework man1 -i man1 nogoli 0.0.0.0/24
-pipework man1 -i man1 desaguadero 0.0.0.0/24
+#pipework lan2 -i lan2 latoma 0.0.0.0/24
+#pipework lan2 -i lan2 potrero 0.0.0.0/24
+#pipework lan1 -i lan1 merlo  0.0.0.0/24
+#pipework lan1 -i lan1 potrero 0.0.0.0/24
+#pipework ppp1 -i ppp1 potrero 0.0.0.0/24
+#pipework ppp1 -i ppp1 laflorida 0.0.0.0/24
+#pipework man1 -i man1 laflorida 0.0.0.0/24
+#pipework man1 -i man1 nogoli 0.0.0.0/24
+#pipework man1 -i man1 desaguadero 0.0.0.0/24
 
 
 xterm -T "latoma" -fa monaco -fs 11 -e "docker attach latoma" &
-xterm -T "laflorida" -fa monaco -fs 11 -e "docker attach laflorida" &
-xterm -T "nogoli" -fa monaco -fs 11 -e "docker attach nogoli" &
-xterm -T "desaguadero" -fa monaco -fs 11 -e "docker attach desaguadero" &
 xterm -T "potrero" -fa monaco -fs 11 -e "docker attach potrero" &
-xterm -T "merlo" -fa monaco -fs 11 -e "docker attach merlo" &
 
 
 #para saber los nombres de los contenedores que estan corriendo
