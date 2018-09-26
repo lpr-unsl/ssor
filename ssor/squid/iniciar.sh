@@ -36,7 +36,7 @@ then
 	docker rm $(docker ps -aq)
 fi
 
-imagenes=`docker images| egrep http | wc -l`
+imagenes=`docker images| egrep squid | wc -l`
 if [ $imagenes -gt 0 ]
 then
 	docker rmi http-latoma
@@ -45,8 +45,6 @@ then
 	docker rmi http-laflorida
 	docker rmi http-desaguadero
 	docker rmi http-nogoli
-	docker rmi http-carrizal
-	docker rmi http-laslenias
 fi
 
 
