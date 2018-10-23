@@ -48,13 +48,13 @@ then
 	docker rmi dhcp-sanfelipe
 fi
 
-docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN cliente:1.6 bash
-docker run --detach --hostname clienteLan2 -it --name clienteLan2 --cap-add NET_ADMIN cliente-cli:1.6 bash
-docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN --privileged servidor:1.6 bash
-#docker run --detach --hostname laflorida -it --name laflorida --cap-add NET_ADMIN --privileged servidor:1.6 bash
-docker run --detach --hostname merlo -it --name merlo --cap-add NET_ADMIN cliente-cli:1.6 bash
-docker run --detach --hostname clienteLan1 -it --name clienteLan1 --cap-add NET_ADMIN cliente-cli:1.6 bash
-docker run --detach --hostname sanfelipe -it --name sanfelipe --cap-add NET_ADMIN --privileged servidor:1.6 bash
+docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" cliente:2.0 bash
+docker run --detach --hostname clienteLan2 -it --name clienteLan2 --cap-add NET_ADMIN cliente-cli:2.0 bash
+docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN --privileged servidor:2.0 bash
+#docker run --detach --hostname laflorida -it --name laflorida --cap-add NET_ADMIN --privileged servidor:2.0 bash
+docker run --detach --hostname merlo -it --name merlo --cap-add NET_ADMIN cliente-cli:2.0 bash
+docker run --detach --hostname clienteLan1 -it --name clienteLan1 --cap-add NET_ADMIN cliente-cli:2.0 bash
+docker run --detach --hostname sanfelipe -it --name sanfelipe --cap-add NET_ADMIN --privileged servidor:2.0 bash
 
 docker exec -it latoma ip ro del default
 docker exec -it clienteLan2 ip ro del default

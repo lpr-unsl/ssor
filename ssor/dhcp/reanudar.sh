@@ -29,7 +29,7 @@ then
 
 fi
 
-docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN dhcp-latoma bash
+docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" dhcp-latoma bash
 docker run --detach --hostname clienteLan2 -it --name clienteLan2 --cap-add NET_ADMIN dhcp-clientelandos bash
 docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN --privileged dhcp-potrero bash
 #docker run --detach --hostname laflorida -it --name laflorida --cap-add NET_ADMIN --privileged dhcp-laflorida bash

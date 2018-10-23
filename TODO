@@ -1,10 +1,13 @@
-version actual 1.6
+version actual 1.7
 
 Mejoras propuestas:
 
 imagen cliente
 	apt-get install curl -> 1.3
 	modificado script de  myvncserver para poner argumentos -> 1.3
+	no se usara mas vnc, se compartira X11 usando herramientas de docker -> 1.7
+    desinstalar vnc, y reemplazar qupzilla y geary -> 1.7
+	borado de archivo core -> 1.7
 
 imagen cliente-cli
 	apt-get install elinks -> 1.3
@@ -39,8 +42,10 @@ host
 	apt-get install samba   para poder probar desde windows -> 1.4
 	apt-get install smbclient -> 1.4
 	dpkg-reconfigure keyboard-configuration (spanish) -> 1.5
+    desinstalar vncclient -> 1.7
 
 varios
 	Cambiar en el grafico de smtp la red LAN2, está mal escrita -> 1.6
 	Agregado practico de squid, firewall y vpn -> 1.6
 	Modificar scripts de "reanudar" para que tenga la configuracion de red anterior
+	Modificar todos los scripts de imagenes cliente agregando --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" -> 1.7
