@@ -31,7 +31,7 @@ fi
 
 
 
-docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN squid-latoma bash
+docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" squid-latoma bash
 docker run --detach --hostname merlo -it --name merlo --cap-add NET_ADMIN squid-merlo bash
 docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN --privileged squid-potrero bash
 docker run --detach --hostname laflorida -it --name laflorida --cap-add NET_ADMIN --privileged squid-laflorida bash

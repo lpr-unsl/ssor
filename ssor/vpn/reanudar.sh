@@ -31,13 +31,13 @@ fi
 
 
 
-docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN vpn-latoma bash
-docker run --detach --hostname merlo -it --name merlo --cap-add NET_ADMIN vpn-merlo bash
+docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN --privileged vpn-latoma bash
+docker run --detach --hostname merlo -it --name merlo --cap-add NET_ADMIN --privileged vpn-merlo bash
 docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN vpn-potrero bash
-docker run --detach --hostname laflorida -it --name laflorida --cap-add NET_ADMIN vpn-laflorida bash
+docker run --detach --hostname laflorida -it --name laflorida --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" vpn-laflorida bash
 docker run --detach --hostname desaguadero -it --name desaguadero --cap-add NET_ADMIN vpn-desaguadero bash
 docker run --detach --hostname carrizal -it --name carrizal --cap-add NET_ADMIN vpn-carrizal bash
-docker run --detach --hostname laslenias -it --name laslenias --cap-add NET_ADMIN vpn-laslenias bash
+docker run --detach --hostname laslenias -it --name laslenias --cap-add NET_ADMIN --privileged vpn-laslenias bash
 
 docker exec -it latoma ip ro del default
 docker exec -it merlo ip ro del default

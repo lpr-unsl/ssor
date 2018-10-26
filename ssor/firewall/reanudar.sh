@@ -31,11 +31,11 @@ fi
 
 
 
-docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN fire-latoma bash
+docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN --privileged fire-latoma bash
 docker run --detach --hostname merlo -it --name merlo --cap-add NET_ADMIN fire-merlo bash
-docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN fire-potrero bash
-docker run --detach --hostname laflorida -it --name laflorida --cap-add NET_ADMIN fire-laflorida bash
-docker run --detach --hostname desaguadero -it --name desaguadero --cap-add NET_ADMIN fire-desaguadero bash
+docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN --privileged fire-potrero bash
+docker run --detach --hostname laflorida -it --name laflorida --cap-add NET_ADMIN --privileged fire-laflorida bash
+docker run --detach --hostname desaguadero -it --name desaguadero --cap-add NET_ADMIN --privileged fire-desaguadero bash
 docker run --detach --hostname nogoli -it --name nogoli --cap-add NET_ADMIN --privileged fire-nogoli bash
 
 docker exec -it latoma ip ro del default

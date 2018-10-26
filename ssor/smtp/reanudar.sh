@@ -31,12 +31,12 @@ fi
 
 
 
-docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN smtp-latoma bash
-docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN smtp-potrero bash
+docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" smtp-latoma bash
+docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN --privileged smtp-potrero bash
 docker run --detach --hostname laflorida -it --name laflorida --cap-add NET_ADMIN smtp-laflorida bash
 docker run --detach --hostname desaguadero -it --name desaguadero --cap-add NET_ADMIN smtp-desaguadero bash
-docker run --detach --hostname carrizal -it --name carrizal --cap-add NET_ADMIN smtp-carrizal bash
-docker run --detach --hostname laslenias -it --name laslenias --cap-add NET_ADMIN smtp-laslenias bash
+docker run --detach --hostname carrizal -it --name carrizal --cap-add NET_ADMIN --privileged smtp-carrizal bash
+docker run --detach --hostname laslenias -it --name laslenias --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" smtp-laslenias bash
 
 docker exec -it latoma ip ro del default
 docker exec -it potrero ip ro del default

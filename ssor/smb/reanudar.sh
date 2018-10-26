@@ -1,23 +1,23 @@
 #!/bin/bash 
 
-puente=`brctl show | egrep lan1`
-if [ -z "$puente" ]
-then
-	brctl addbr lan1
-	brctl addbr lan2
-	brctl addbr lan3
-	brctl addbr ppp1
-	brctl addbr ppp2
-	brctl addbr man1
-fi
-
-
-ip link set dev lan1 up
-ip link set dev lan2 up
-ip link set dev lan3 up
-ip link set dev ppp1 up
-ip link set dev ppp2 up
-ip link set dev man1 up
+#puente=`brctl show | egrep lan1`
+#if [ -z "$puente" ]
+#then
+	#brctl addbr lan1
+	#brctl addbr lan2
+	#brctl addbr lan3
+	#brctl addbr ppp1
+	#brctl addbr ppp2
+	#brctl addbr man1
+#fi
+#
+#
+#ip link set dev lan1 up
+#ip link set dev lan2 up
+#ip link set dev lan3 up
+#ip link set dev ppp1 up
+#ip link set dev ppp2 up
+#ip link set dev man1 up
 
 contenedores=`docker ps -aq|wc -l`
 
@@ -30,8 +30,8 @@ then
 fi
 
 
-docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN smb-latoma bash
-docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN --privileged smb-potrero bash
+docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" smb-latoma bash
+docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN smb-potrero bash
 
 docker exec -it latoma ip ro del default
 docker exec -it potrero ip ro del default
