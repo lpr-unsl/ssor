@@ -30,7 +30,7 @@ then
 fi
 
 
-docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN dns-latoma bash
+docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" dns-latoma bash
 docker run --detach --hostname laflorida -it --name laflorida --cap-add NET_ADMIN --privileged dns-laflorida bash
 docker run --detach --hostname nogoli -it --name nogoli --cap-add NET_ADMIN --privileged dns-nogoli bash
 docker run --detach --hostname desaguadero -it --name desaguadero --cap-add NET_ADMIN --privileged dns-desaguadero bash
