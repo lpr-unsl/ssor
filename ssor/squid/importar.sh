@@ -29,23 +29,23 @@ then
 
 fi
 
-gunzip $1/squid-latoma.tar.gz
-docker load -i $1/squid-latoma.tar
+#gunzip $1/squid-latoma.tar.gz
+docker load -i $1/squid-latoma.tar.gz
 echo "listo latoma"
-gunzip $1/squid-merlo.tar
-docker load -i $1/squid-merlo.tar
+#gunzip $1/squid-merlo.tar
+docker load -i $1/squid-merlo.tar.gz
 echo "listo merlo"
-gunzip $1/squid-potrero.tar
-docker load -i $1/squid-potrero.tar
+#gunzip $1/squid-potrero.tar
+docker load -i $1/squid-potrero.tar.gz
 echo "listo potrero"
-gunzip $1/squid-laflorida.tar
-docker load -i $1/squid-laflorida.tar
+#gunzip $1/squid-laflorida.tar
+docker load -i $1/squid-laflorida.tar.gz
 echo "listo laflorida"
-gunzip $1/squid-desaguadero.tar
-docker load -i $1/squid-desaguadero.tar
+#gunzip $1/squid-desaguadero.tar
+docker load -i $1/squid-desaguadero.tar.gz
 echo "listo desaguadero"
-gunzip $1/squid-nogoli.tar
-docker load -i $1/squid-nogoli.tar
+#gunzip $1/squid-nogoli.tar
+docker load -i $1/squid-nogoli.tar.gz
 echo "listo nogoli"
 
 

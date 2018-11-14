@@ -29,23 +29,23 @@ then
 
 fi
 
-gunzip $1/dhcp-latoma.tar.gz
-docker load -i $1/dhcp-latoma.tar
+#gunzip $1/dhcp-latoma.tar.gz
+docker load -i $1/dhcp-latoma.tar.gz
 echo "listo latoma"
-gunzip $1/dhcp-clientelandos.tar
-docker load -i $1/dhcp-clientelandos.tar
+#gunzip $1/dhcp-clientelandos.tar
+docker load -i $1/dhcp-clientelandos.tar.gz
 echo "listo clientelan2"
-gunzip $1/dhcp-potrero.tar
-docker load -i $1/dhcp-potrero.tar
+#gunzip $1/dhcp-potrero.tar
+docker load -i $1/dhcp-potrero.tar.gz
 echo "listo potrero"
-gunzip $1/dhcp-merlo.tar
-docker load -i $1/dhcp-merlo.tar
+#gunzip $1/dhcp-merlo.tar
+docker load -i $1/dhcp-merlo.tar.gz
 echo "listo merlo"
-gunzip $1/dhcp-clientelanuno.tar
-docker load -i $1/dhcp-clientelanuno.tar
+#gunzip $1/dhcp-clientelanuno.tar
+docker load -i $1/dhcp-clientelanuno.tar.gz
 echo "listo clientelan1"
-gunzip $1/dhcp-sanfelipe.tar
-docker load -i $1/dhcp-sanfelipe.tar
+#gunzip $1/dhcp-sanfelipe.tar
+docker load -i $1/dhcp-sanfelipe.tar.gz
 echo "listo sanfelipe"
 
 

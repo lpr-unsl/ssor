@@ -31,29 +31,29 @@ then
 
 fi
 
-gunzip $1/http-latoma.tar.gz
-docker load -i $1/http-latoma.tar
+#gunzip $1/http-latoma.tar.gz
+docker load -i $1/http-latoma.tar.gz
 echo "listo latoma"
-gunzip $1/http-merlo.tar
-docker load -i $1/http-merlo.tar
+#gunzip $1/http-merlo.tar
+docker load -i $1/http-merlo.tar.gz
 echo "listo merlo"
-gunzip $1/http-potrero.tar
-docker load -i $1/http-potrero.tar
+#gunzip $1/http-potrero.tar
+docker load -i $1/http-potrero.tar.gz
 echo "listo potrero"
-gunzip $1/http-laflorida.tar
-docker load -i $1/http-laflorida.tar
+#gunzip $1/http-laflorida.tar
+docker load -i $1/http-laflorida.tar.gz
 echo "listo laflorida"
-gunzip $1/http-desaguadero.tar
-docker load -i $1/http-desaguadero.tar
+#gunzip $1/http-desaguadero.tar
+docker load -i $1/http-desaguadero.tar.gz
 echo "listo desaguadero"
-gunzip $1/http-nogoli.tar
-docker load -i $1/http-nogoli.tar
+#gunzip $1/http-nogoli.tar
+docker load -i $1/http-nogoli.tar.gz
 echo "listo nogoli"
-gunzip $1/http-carrizal.tar
-docker load -i $1/http-carrizal.tar
+#gunzip $1/http-carrizal.tar
+docker load -i $1/http-carrizal.tar.gz
 echo "listo carrizal"
-gunzip $1/http-laslenias.tar
-docker load -i $1/http-laslenias.tar
+#gunzip $1/http-laslenias.tar
+docker load -i $1/http-laslenias.tar.gz
 echo "listo laslenias"
 
 

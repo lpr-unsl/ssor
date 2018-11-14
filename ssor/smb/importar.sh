@@ -25,11 +25,11 @@ then
 
 fi
 
-gunzip $1/smb-latoma.tar.gz
-docker load -i $1/smb-latoma.tar
+#gunzip $1/smb-latoma.tar.gz
+docker load -i $1/smb-latoma.tar.gz
 echo "listo latoma"
-gunzip $1/smb-potrero.tar
-docker load -i $1/smb-potrero.tar
+#gunzip $1/smb-potrero.tar
+docker load -i $1/smb-potrero.tar.gz
 echo "listo potrero"
 
 

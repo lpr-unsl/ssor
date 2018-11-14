@@ -29,23 +29,23 @@ then
 
 fi
 
-gunzip $1/smtp-latoma.tar.gz
-docker load -i $1/smtp-latoma.tar
+#gunzip $1/smtp-latoma.tar.gz
+docker load -i $1/smtp-latoma.tar.gz
 echo "listo latoma"
-gunzip $1/smtp-potrero.tar
-docker load -i $1/smtp-potrero.tar
+#gunzip $1/smtp-potrero.tar
+docker load -i $1/smtp-potrero.tar.gz
 echo "listo potrero"
-gunzip $1/smtp-laflorida.tar
-docker load -i $1/smtp-laflorida.tar
+#gunzip $1/smtp-laflorida.tar
+docker load -i $1/smtp-laflorida.tar.gz
 echo "listo laflorida"
-gunzip $1/smtp-desaguadero.tar
-docker load -i $1/smtp-desaguadero.tar
+#gunzip $1/smtp-desaguadero.tar
+docker load -i $1/smtp-desaguadero.tar.gz
 echo "listo desaguadero"
-gunzip $1/smtp-carrizal.tar
-docker load -i $1/smtp-carrizal.tar
+#gunzip $1/smtp-carrizal.tar
+docker load -i $1/smtp-carrizal.tar.gz
 echo "listo carrizal"
-gunzip $1/smtp-laslenias.tar
-docker load -i $1/smtp-laslenias.tar
+#gunzip $1/smtp-laslenias.tar
+docker load -i $1/smtp-laslenias.tar.gz
 echo "listo laslenias"
 
 

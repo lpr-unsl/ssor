@@ -74,7 +74,7 @@ pipework lan1 -i lan1 merlo  0.0.0.0/24
 pipework lan1 -i lan1 clienteLan1 0.0.0.0/24
 pipework lan2 -i lan2 sanfelipe 0.0.0.0/24
 
-#por problemas de checksum de udp
+#por problemas de checksum de udp  ver en https://github.com/fgrehm/vagrant-lxc/issues/153
 docker exec -it potrero ethtool -K lan2 tx off 1>/dev/null
 docker exec -it sanfelipe ethtool -K lan2 tx off 1>/dev/null
 

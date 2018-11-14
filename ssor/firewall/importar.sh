@@ -31,23 +31,23 @@ then
 
 fi
 
-gunzip $1/fire-latoma.tar.gz
-docker load -i $1/fire-latoma.tar
+#gunzip $1/fire-latoma.tar.gz
+docker load -i $1/fire-latoma.tar.gz
 echo "listo latoma"
-gunzip $1/fire-merlo.tar
-docker load -i $1/fire-merlo.tar
+#gunzip $1/fire-merlo.tar
+docker load -i $1/fire-merlo.tar.gz
 echo "listo merlo"
-gunzip $1/fire-potrero.tar
-docker load -i $1/fire-potrero.tar
+#gunzip $1/fire-potrero.tar
+docker load -i $1/fire-potrero.tar.gz
 echo "listo potrero"
-gunzip $1/fire-laflorida.tar
-docker load -i $1/fire-laflorida.tar
+#gunzip $1/fire-laflorida.tar
+docker load -i $1/fire-laflorida.tar.gz
 echo "listo laflorida"
-gunzip $1/fire-desaguadero.tar
-docker load -i $1/fire-desaguadero.tar
+#gunzip $1/fire-desaguadero.tar
+docker load -i $1/fire-desaguadero.tar.gz
 echo "listo desaguadero"
-gunzip $1/fire-nogoli.tar
-docker load -i $1/fire-nogoli.tar
+#gunzip $1/fire-nogoli.tar
+docker load -i $1/fire-nogoli.tar.gz
 echo "listo nogoli"
 
 

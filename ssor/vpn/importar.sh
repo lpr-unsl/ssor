@@ -30,26 +30,26 @@ then
 
 fi
 
-gunzip $1/vpn-latoma.tar.gz
-docker load -i $1/vpn-latoma.tar
+#gunzip $1/vpn-latoma.tar.gz
+docker load -i $1/vpn-latoma.tar.gz
 echo "listo latoma"
-gunzip $1/vpn-merlo.tar
-docker load -i $1/vpn-merlo.tar
+#gunzip $1/vpn-merlo.tar
+docker load -i $1/vpn-merlo.tar.gz
 echo "listo merlo"
-gunzip $1/vpn-potrero.tar
-docker load -i $1/vpn-potrero.tar
+#gunzip $1/vpn-potrero.tar
+docker load -i $1/vpn-potrero.tar.gz
 echo "listo potrero"
-gunzip $1/vpn-laflorida.tar
-docker load -i $1/vpn-laflorida.tar
+#gunzip $1/vpn-laflorida.tar
+docker load -i $1/vpn-laflorida.tar.gz
 echo "listo laflorida"
-gunzip $1/vpn-desaguadero.tar
-docker load -i $1/vpn-desaguadero.tar
+#gunzip $1/vpn-desaguadero.tar
+docker load -i $1/vpn-desaguadero.tar.gz
 echo "listo desaguadero"
-gunzip $1/vpn-carrizal.tar
-docker load -i $1/vpn-carrizal.tar
+#gunzip $1/vpn-carrizal.tar
+docker load -i $1/vpn-carrizal.tar.gz
 echo "listo carrizal"
-gunzip $1/vpn-laslenias.tar
-docker load -i $1/vpn-laslenias.tar
+#gunzip $1/vpn-laslenias.tar
+docker load -i $1/vpn-laslenias.tar.gz
 echo "listo laslenias"
 
 

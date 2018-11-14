@@ -29,23 +29,23 @@ then
 
 fi
 
-gunzip $1/dns-latoma.tar.gz
-docker load -i $1/dns-latoma.tar
+#gunzip $1/dns-latoma.tar.gz
+docker load -i $1/dns-latoma.tar.gz
 echo "listo latoma"
-gunzip $1/dns-laflorida.tar
-docker load -i $1/dns-laflorida.tar
+#gunzip $1/dns-laflorida.tar
+docker load -i $1/dns-laflorida.tar.gz
 echo "listo laflorida"
-gunzip $1/dns-nogoli.tar
-docker load -i $1/dns-nogoli.tar
+#gunzip $1/dns-nogoli.tar
+docker load -i $1/dns-nogoli.tar.gz
 echo "listo nogoli"
-gunzip $1/dns-desaguadero.tar
-docker load -i $1/dns-desaguadero.tar
+#gunzip $1/dns-desaguadero.tar
+docker load -i $1/dns-desaguadero.tar.gz
 echo "listo desaguadero"
-gunzip $1/dns-potrero.tar
-docker load -i $1/dns-potrero.tar
+#gunzip $1/dns-potrero.tar
+docker load -i $1/dns-potrero.tar.gz
 echo "listo potrero"
-gunzip $1/dns-merlo.tar
-docker load -i $1/dns-merlo.tar
+#gunzip $1/dns-merlo.tar
+docker load -i $1/dns-merlo.tar.gz
 echo "listo merlo"
 
 
