@@ -95,6 +95,8 @@ docker exec -it desaguadero ip ro add 10.22.0.0/16 via 170.0.2.5
 docker exec -it nogoli ip ro add 192.168.1.0/24 via 8.8.8.14
 docker exec -it nogoli ip ro add 172.16.4.0/23 via 8.8.8.14
 docker exec -it nogoli ip ro add 10.22.0.0/16 via 8.8.8.1
+docker exec -it nogoli ip ro add 200.8.4.16/30 via 8.8.8.14
+docker exec -it nogoli ip ro add 170.0.2.4/30 via 8.8.8.1
 
 xterm -T "latoma" -fa monaco -fs 11 -e "docker attach latoma" &
 xterm -T "merlo" -fa monaco -fs 11 -e "docker attach merlo" &

@@ -8,9 +8,15 @@ fi
 docker save -o $1/squid-latoma.tar squid-latoma 
 gzip $1/squid-latoma.tar 
 echo "listo latoma"
+docker save -o $1/squid-clienteLan2.tar squid-clienteLan2 
+gzip $1/squid-clienteLan2.tar 
+echo "listo clienteLan2"
 docker save -o $1/squid-merlo.tar squid-merlo
 gzip $1/squid-merlo.tar
 echo "listo merlo"
+docker save -o $1/squid-clienteLan1.tar squid-clienteLan1
+gzip $1/squid-clienteLan1.tar
+echo "listo clienteLan1"
 docker save -o $1/squid-potrero.tar squid-potrero
 gzip $1/squid-potrero.tar
 echo "listo potrero"

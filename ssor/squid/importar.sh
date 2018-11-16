@@ -21,7 +21,9 @@ if [ $imagenes -gt 0 ]
 then
 
 	docker rmi squid-latoma 
+	docker rmi squid-clienteLan2 
 	docker rmi squid-merlo
+	docker rmi squid-clienteLan1
 	docker rmi squid-potrero
 	docker rmi squid-laflorida
 	docker rmi squid-desaguadero
@@ -32,9 +34,15 @@ fi
 #gunzip $1/squid-latoma.tar.gz
 docker load -i $1/squid-latoma.tar.gz
 echo "listo latoma"
+#gunzip $1/squid-clienteLan2.tar
+docker load -i $1/squid-clienteLan2.tar.gz
+echo "listo clienteLan2"
 #gunzip $1/squid-merlo.tar
 docker load -i $1/squid-merlo.tar.gz
 echo "listo merlo"
+#gunzip $1/squid-clienteLan1.tar
+docker load -i $1/squid-clienteLan1.tar.gz
+echo "listo clienteLan1"
 #gunzip $1/squid-potrero.tar
 docker load -i $1/squid-potrero.tar.gz
 echo "listo potrero"
