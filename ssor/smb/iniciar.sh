@@ -27,7 +27,7 @@ then
 	mount $dispositivo /var/lib/docker
 	service docker start
 fi
-
+/sbin/iptables -P FORWARD ACCEPT
 contenedores=`docker ps -aq|wc -l`
 
 if [ $contenedores -gt 0 ]

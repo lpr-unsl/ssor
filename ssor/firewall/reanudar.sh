@@ -29,7 +29,7 @@ then
 
 fi
 
-
+/sbin/iptables -P FORWARD ACCEPT
 
 docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN --privileged fire-latoma bash
 docker run --detach --hostname merlo -it --name merlo --cap-add NET_ADMIN fire-merlo bash

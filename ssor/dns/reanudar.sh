@@ -28,7 +28,7 @@ then
 	docker rm $(docker ps -aq)
 
 fi
-
+/sbin/iptables -P FORWARD ACCEPT
 
 docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" dns-latoma bash
 docker run --detach --hostname laflorida -it --name laflorida --cap-add NET_ADMIN --privileged dns-laflorida bash
