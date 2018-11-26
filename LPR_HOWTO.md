@@ -53,7 +53,7 @@ Se puede trabajar de varias maneras dependiendo de la necesidad:
 
 ### D) Inicialización de imagenes de Docker
   Esta tarea se ejecutara **SOLO una vez** en cada una de las maquinas que quiera utilizar para realizar los practicos.
-  - loguearse con usuario *root* password *lprlpr*
+  - loguearse con usuario *root* password *lpr*
   - En el menu, seleccionar aplications -> terminal emulator
   - Averiguar el nombre de la partición que se usará para almacenar las imagenes de docker
     - Para ello escribir el siguiente comando en la terminal y tomar nota del nombre del disco de 4G que creamos o el usb que conectamos
