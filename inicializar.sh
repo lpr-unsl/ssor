@@ -1,9 +1,12 @@
 #!/bin/bash
 clear
+version=`cat version.txt`
+
 echo ""
 echo "          - PROCEDIMIENTO PARA INICIALIZAR MAQUINAS VIRTUALES -
          SOLO EJECUTARLO SI ES LA PRIMERA VEZ QUE VA A USARLAS
-         
+         VERSION $version         
+
          Requisitos: un disco (usb o particion de al menos 4Gb)
          SE PERDERAN TODOS LOS DATOS DEL MISMO !!!!!"
 echo ""
@@ -29,13 +32,13 @@ service docker stop
 mount $dispositivo /var/lib/docker
 service docker start
 
-docker load < /root/Documents/images/servidor-2.0.tar.gz
+docker load < /root/Documents/images/servidor-$version.tar.gz
 echo "listo servidor"
-docker load < /root/Documents/images/cliente-2.0.tar.gz
+docker load < /root/Documents/images/cliente-$version.tar.gz
 echo "listo cliente"
-docker load < /root/Documents/images/cliente-cli-2.0.tar.gz
+docker load < /root/Documents/images/cliente-cli-$version.tar.gz
 echo "listo cliente-cli"
-docker load < /root/Documents/images/router-2.0.tar.gz
+docker load < /root/Documents/images/router-$version.tar.gz
 echo "listo router"
 
 echo ""
