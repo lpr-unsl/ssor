@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-version=`cat version.txt`
+version=`./cat version.txt`
 
 echo ""
 echo "          - PROCEDIMIENTO PARA INICIALIZAR MAQUINAS VIRTUALES -
