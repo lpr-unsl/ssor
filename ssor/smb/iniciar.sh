@@ -1,5 +1,5 @@
 #!/bin/bash
-
+version=`cat ../../version.txt`
 #puente=`brctl show | egrep lan1`
 #if [ -z "$puente" ]
 #then
@@ -44,8 +44,8 @@ then
 fi
 
 
-docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw"  --privileged cliente:2.0 bash
-docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN  --privileged cliente-cli:2.0 bash
+docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw"  --privileged cliente:$version bash
+docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN  --privileged cliente-cli:$version bash
 
 docker exec -it latoma ip ro del default
 docker exec -it potrero ip ro del default

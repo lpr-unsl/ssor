@@ -1,5 +1,5 @@
 #!/bin/bash
-
+version=`cat ../../version.txt`
 puente=`brctl show | egrep lan1`
 if [ -z "$puente" ]
 then
@@ -49,12 +49,12 @@ fi
 
 
 
-docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" cliente:2.0 bash
-docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN --privileged servidor:2.0 bash
-docker run --detach --hostname laflorida -it --name laflorida --cap-add NET_ADMIN router:2.0 bash
-docker run --detach --hostname desaguadero -it --name desaguadero --cap-add NET_ADMIN router:2.0 bash
-docker run --detach --hostname carrizal -it --name carrizal --cap-add NET_ADMIN --privileged servidor:2.0 bash
-docker run --detach --hostname laslenias -it --name laslenias --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" cliente:2.0 bash
+docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" cliente:$version.0 bash
+docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN --privileged servidor:$version bash
+docker run --detach --hostname laflorida -it --name laflorida --cap-add NET_ADMIN router:$version bash
+docker run --detach --hostname desaguadero -it --name desaguadero --cap-add NET_ADMIN router:$version bash
+docker run --detach --hostname carrizal -it --name carrizal --cap-add NET_ADMIN --privileged servidor:$version bash
+docker run --detach --hostname laslenias -it --name laslenias --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" cliente:$version bash
 
 docker exec -it latoma ip ro del default
 docker exec -it potrero ip ro del default
