@@ -49,7 +49,7 @@ fi
 
 
 
-docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" cliente:$version.0 bash
+docker run --detach --hostname latoma -it --name latoma --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" cliente:$version bash
 docker run --detach --hostname potrero -it --name potrero --cap-add NET_ADMIN --privileged servidor:$version bash
 docker run --detach --hostname laflorida -it --name laflorida --cap-add NET_ADMIN router:$version bash
 docker run --detach --hostname desaguadero -it --name desaguadero --cap-add NET_ADMIN router:$version bash
