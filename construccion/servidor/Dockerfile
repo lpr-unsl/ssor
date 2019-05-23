@@ -36,5 +36,6 @@ RUN gunzip server.crt.gz
 RUN gunzip client.crt.gz
 WORKDIR /usr/share/doc/openvpn/examples/sample-config-files
 RUN gunzip server.conf.gz
+WORKDIR /root
 USER 0:0 
 CMD /bin/bash
