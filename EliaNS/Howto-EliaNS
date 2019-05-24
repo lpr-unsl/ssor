@@ -1,0 +1,5 @@
+export CLASSPATH=Simulador.jar:$CLASSPATH
+
+javac visual.java
+
+java visual
