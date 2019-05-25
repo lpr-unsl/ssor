@@ -26,7 +26,7 @@ COPY *.mp3 /root
 RUN sed  -i 's/listen-on-v6 { any; }/listen-on { 127.0.0.1; };\n\tlisten-on-v6 { ::1; };/g' /etc/bind/named.conf.options
 RUN echo 'FEATURE(accept_unqualified_senders)dnl\nFEATURE(accept_unresolvable_domains)dnl' >> /etc/mail/sendmail.mc
 RUN echo localhost > /etc/mail/local-host-names
-RUN sed -i -e 's/#disable_plaintext_auth = yes/disable_plaintext_auth = no/g' /usr/share/dovecot/conf.d/10-auth.conf
+RUN sed -i -e 's/#disable_plaintext_auth = yes/disable_plaintext_auth = no/g' /etc/dovecot/conf.d/10-auth.conf
 RUN sed -i -e 's/files dns/files/g' /etc/nsswitch.conf
 COPY *.gz /usr/share/doc/openvpn/examples
 WORKDIR /usr/share/doc/openvpn/examples
