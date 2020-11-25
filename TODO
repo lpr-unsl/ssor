@@ -51,3 +51,6 @@ varios
 	Agregado practico de squid, firewall y vpn -> 1.6
 	Modificar scripts de "reanudar" para que tenga la configuracion de red anterior
 	Modificar todos los scripts de imagenes cliente agregando --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" -> 2.0
+
+	MODIFICAR TP firewall ... installar ufw ... agregar 1 maquina en lan1 y otra en lan2 .. Sacar Desaguadero
+	MODIFICAR TP VPN ... sacar cliente grafico en "la florida" .. en todo caso ponerlo en "la toma" para ejecutar un cliente de correo POP
