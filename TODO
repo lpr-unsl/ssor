@@ -1,7 +1,7 @@
 version actual 2.0
 
 Mejoras propuestas:
- en proxy sacar ruteo a lan1 y lan2
+ en proxy sacar ruteo a lan1 y lan2 ... agregar rutas desde man1 a ppp1 ...
  agregar squirrelmail en smtp
  revisas si hace fatla haceralgo para proxy transparente
 
