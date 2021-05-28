@@ -1,6 +1,9 @@
 version actual 2.0
 
 Mejoras propuestas:
+ en proxy sacar ruteo a lan1 y lan2
+ agregar squirrelmail en smtp
+ revisas si hace fatla haceralgo para proxy transparente
 
 imagen cliente
 	apt-get install curl -> 1.3
