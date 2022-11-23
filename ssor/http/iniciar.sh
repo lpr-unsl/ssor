@@ -1,5 +1,5 @@
 #!/bin/bash
-version=`cat ../../version.txt`
+version=`cat root/Documents/version.txt`
 puente=`brctl show | egrep lan1`
 if [ -z "$puente" ]
 then
@@ -21,10 +21,8 @@ ip link set dev man1 up
 montaje=`df -h | egrep docker`
 if [ -z "$montaje" ]
 then
-        echo -n " falta montar la particion con las imagenes, especifique el dispositivo: "
-	read dispositivo
 	service docker stop
-	mount $dispositivo /var/lib/docker
+	mount $1 /var/lib/docker
 	service docker start
 fi
 /sbin/iptables -P FORWARD ACCEPT
