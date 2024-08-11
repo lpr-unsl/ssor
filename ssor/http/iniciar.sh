@@ -48,7 +48,6 @@ docker network connect lan2 potrero --ip 172.16.4.1
 docker network connect lan2 latoma --ip 172.16.4.10
 docker network connect ppp1 potrero --ip 200.8.4.18
 docker network connect ppp1 laflorida --ip 200.8.4.17
-docker network connect ppp1 potrero --ip 200.8.4.18
 docker network connect man1 laflorida --ip 8.8.8.14
 docker network connect man1 nogoli --ip 8.8.8.8
 docker network connect man1 desaguadero --ip 8.8.8.1
