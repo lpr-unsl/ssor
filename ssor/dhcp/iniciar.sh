@@ -1,6 +1,5 @@
 #!/bin/bash
-#version=`cat ../../version.txt`
-version=2.0
+version=`cat ../../version.txt`
 puente=`docker network list | egrep lan1`
 if [ -z "$puente" ]
 then
