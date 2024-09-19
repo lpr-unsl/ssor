@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-version=`./cat version.txt`
+version=`cat ./version.txt`
 
 echo ""
 echo "          - PROCEDIMIENTO PARA INICIALIZAR MAQUINAS VIRTUALES -
@@ -32,14 +32,11 @@ service docker stop
 mount $dispositivo /var/lib/docker
 service docker start
 
-docker load < /root/Documents/images/servidor-$version.tar.gz
-echo "listo servidor"
-docker load < /root/Documents/images/cliente-$version.tar.gz
-echo "listo cliente"
-docker load < /root/Documents/images/cliente-cli-$version.tar.gz
-echo "listo cliente-cli"
-docker load < /root/Documents/images/router-$version.tar.gz
-echo "listo router"
-
+for nombre in servidor cliente cliente-cli router
+do
+docker pull sistemasoperativostur/netoslab-$nombre:$version
+echo "listo $nombre"
+docker tag sistemasoperativostur/netoslab-$nombre:$version $nombre:$version
+done
 echo ""
 echo "Ahora a trabajar !!! los practicos estan en el directorio ssor "

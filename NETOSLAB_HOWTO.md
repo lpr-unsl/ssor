@@ -1,13 +1,13 @@
-# LPR HOWTO - Cómo comenzar a trabajar con LPR  
+# NETOSLAB HOWTO - Cómo comenzar a trabajar con NETOSLAB  
 
 Se puede trabajar de varias maneras dependiendo de la necesidad:
 ### A) Trabajo en distintos lugares, sin acceder/modificar el disco de cada PC
 1. Requisitos:
-  - LiveCD (DVD) o USB (4G) con sistema operativo LPR
+  - LiveCD (DVD) o USB (4G) con sistema operativo NETOSLAB
   - USB (4G) para almacenar imagenes y llevarlas a los distintos lugares   
 
 2. Configuracion inicial:  
-  - La imagen de LPR puede ser descargada desde < http://www.dirinfo.unsl.edu.ar/lpr/ >  
+  - La imagen de NETOSLAB puede ser descargada desde < http://www.dirinfo.unsl.edu.ar/netoslab/ >  
 
   - Usar k3b u otra herramienta para grabar la imagen ISO descargada en un DVD o USB
 
@@ -17,11 +17,11 @@ Se puede trabajar de varias maneras dependiendo de la necesidad:
 
 ### B) Trabajo en distintos lugares, pudiendo acceder/modificar el disco de cada PC
 1. Requisitos:
-  - Virtualización de sistema operativo LPR (Virtualbox, Vmware,etc)
+  - Virtualización de sistema operativo NETOSLAB (Virtualbox, Vmware,etc)
   - USB (4G) para almacenar imagenes y llevarlas a los distintos lugares  
   
 2. Configuracion inicial:  
-  - La imagen de LPR puede ser descargada desde < http://www.dirinfo.unsl.edu.ar/lpr/ >  
+  - La imagen de NETOSLAB puede ser descargada desde < http://www.dirinfo.unsl.edu.ar/netoslab/ >  
   - Usar el virtualizador para crear una maquina virtual llamada LPR con las siguientes características:
     - Tipo Linux
     - ubuntu 64 bits
@@ -34,11 +34,11 @@ Se puede trabajar de varias maneras dependiendo de la necesidad:
 
 ### C) Trabajo en un solo lugar, pudiendo acceder/modificar el dico de cada PC
 1. Requisitos:
-  - Virtualización de sistema operativo LPR (Virtualbox, Vmware,etc)
+  - Virtualización de sistema operativo NETOSLAB (Virtualbox, Vmware,etc)
   - Espacio en disco rígido (al menos 4Gb) para crear una Partición virtual
 
 2. Configuracion inicial:  
-  - La imagen de LPR puede ser descargada desde < http://www.dirinfo.unsl.edu.ar/lpr/ >
+  - La imagen de LPR puede ser descargada desde < http://www.dirinfo.unsl.edu.ar/netoslab/ >
   - Usar el virtualizador para crear una máquina virtual llamada LPR con las siguientes características:
     - Tipo Linux
     - ubuntu 64 bits
@@ -53,7 +53,7 @@ Se puede trabajar de varias maneras dependiendo de la necesidad:
 
 ### D) Inicialización de imagenes de Docker
   Esta tarea se ejecutara **SOLO una vez** en cada una de las maquinas que quiera utilizar para realizar los practicos.
-  - loguearse con usuario *root* password *lpr*
+  - loguearse con usuario *root* password *netOSLab*
   - En el menu, seleccionar aplications -> terminal emulator
   - Averiguar el nombre de la partición que se usará para almacenar las imagenes de docker
     - Para ello escribir el siguiente comando en la terminal y tomar nota del nombre del disco de 4G que creamos o el usb que conectamos
@@ -75,25 +75,6 @@ Se puede trabajar de varias maneras dependiendo de la necesidad:
       - cd NOMBRE_DEL_PRACTICO
       - ./iniciar.sh
     
-  - Una vez que hicieron modificaciones en la configuración de los servicios, pueden guardar el estado.
-    - ejecutando el comando:
-      - /pausar.sh
-    - el script ./pausar.sh hace commit de los contenedores usados a nuevas imagenes llamadas "practico"-nombre_del_contenedor
-  - Si quieren seguir trabajando en otra PC, deben llevarse en USB las imagenes con los cambios
-    - para ello ejecutan en la terminal:
-      - ./exportar
-      ese script mustra es espacio ocupado y pide un disco donde pondremos los archivos tar exportados (usb)
-
-  - Una vez que se encuentran en la otra PC:
-    - Deberán SOLO la primera vez que la usen inicializarla, de acuerdo al punto D. 
-    - Luego ir al directorio deferido al practico, y ejecutando en la terminal:
-      - cd Documents/ssor/NOMBRE_DEL_PRACTICO
-      - ./importar.sh
-  
-  - Luego, ya sea si estan en otra PC o continuan en la misma que ejecutaron ./pausar.sh , deben reanudar la ejecucion del practivo.
-    - Para ello ejecutan en la terminal lo siguiente:
-      - ./continuar.sh  
-  NOTA: Para el practico de dhcp y dns NO se guarda la configuracion de red ... hay que volver a configurar las placas de red y rutas, si fueran necesarias, en los contenedores
 
 
 
