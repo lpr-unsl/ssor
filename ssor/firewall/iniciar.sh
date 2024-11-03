@@ -39,15 +39,15 @@ docker create --network=bridge --hostname laflorida --name laflorida -it --cap-a
 docker create --network=bridge --hostname nogoli --name nogoli -it --cap-add NET_ADMIN --privileged servidor:$version
 docker create --network=bridge --hostname desaguadero --name desaguadero -it --cap-add NET_ADMIN --privileged servidor:$version
 
-docker network connect lan1 merlo
-docker network connect lan1 potrero
-docker network connect lan2 potrero
-docker network connect lan2 latoma
-docker network connect ppp1 potrero
-docker network connect ppp1 laflorida
-docker network connect man1 laflorida
-docker network connect man1 nogoli
-docker network connect man1 desaguadero
+docker network connect lan1 merlo --ip 192.168.1.48
+docker network connect lan1 potrero --ip 192.168.1.1
+docker network connect lan2 potrero --ip 172.16.4.1
+docker network connect lan2 latoma --ip 172.16.4.10
+docker network connect ppp1 potrero --ip 200.8.4.18
+docker network connect ppp1 laflorida --ip 200.8.4.17
+docker network connect man1 laflorida --ip 8.8.8.14
+docker network connect man1 nogoli --ip 8.8.8.8
+docker network connect man1 desaguadero --ip 8.8.8.1
 
 xterm -T "latoma" -fa monaco -fs 11 -e "docker start -ia latoma" &
 xterm -T "laflorida" -fa monaco -fs 11 -e "docker start -ia laflorida" &
@@ -71,15 +71,23 @@ docker exec -it desaguadero ip ro del default
 docker exec -it potrero ip ro del default
 docker exec -it merlo ip ro del default
 
-docker exec -it merlo ifconfig lan10 0.0.0.0
-docker exec -it potrero ifconfig lan10 0.0.0.0
-docker exec -it potrero ifconfig lan20 0.0.0.0
-docker exec -it latoma ifconfig lan20 0.0.0.0
-docker exec -it potrero ifconfig ppp10 0.0.0.0
-docker exec -it laflorida ifconfig ppp10 0.0.0.0
-docker exec -it laflorida ifconfig man10 0.0.0.0
-docker exec -it nogoli ifconfig man10 0.0.0.0
-docker exec -it desaguadero ifconfig man10 0.0.0.0
+docker exec -it latoma ip ro add default via 172.16.4.1
+docker exec -it merlo ip ro add default via 192.168.1.1
+docker exec -it potrero ip ro add default via 200.8.4.17
+
+docker exec -it laflorida ip ro add 192.168.1.0/24 via 200.8.4.18
+docker exec -it laflorida ip ro add 172.16.4.0/23 via 200.8.4.18
+docker exec -it laflorida ip ro add 10.22.0.0/16 via 8.8.8.1
+
+docker exec -it desaguadero ip ro add 192.168.1.0/24 via 8.8.8.14
+docker exec -it desaguadero ip ro add 172.16.4.0/23 via 8.8.8.14
+
+docker exec -it nogoli ip ro add 192.168.1.0/24 via 8.8.8.14
+docker exec -it nogoli ip ro add 172.16.4.0/23 via 8.8.8.14
+docker exec -it nogoli ip ro add 10.22.0.0/16 via 8.8.8.1
+docker exec -it nogoli ip ro add 200.8.4.16/30 via 8.8.8.14
+docker exec -it nogoli ip ro add 170.0.2.4/30 via 8.8.8.1
+
 #para saber los nombres de los contenedores que estan corriendo
 # docker ps  --format "table {{.Names}}"
 
