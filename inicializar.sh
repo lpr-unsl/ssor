@@ -32,12 +32,10 @@ service docker stop
 mount $dispositivo /var/lib/docker
 service docker start
 
-for nombre in servidor servidor-dns servidor-dhcp servidor-http cliente cliente-cli router
+for nombre in servidor-dhcp servidor-dns servidor-firewall servidor-http servidor-smb servidor-smtp servidor-squid servidor-vpn cliente cliente-cli router
 do
 docker pull sistemasoperativostur/netoslab-$nombre:$version
 echo "listo $nombre"
-#remove tag after all iniciar.sh script changes
-docker tag sistemasoperativostur/netoslab-$nombre:$version $nombre:$version
 done
 echo ""
 echo "Ahora a trabajar !!! los practicos estan en el directorio ssor "

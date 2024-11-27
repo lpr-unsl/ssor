@@ -1,5 +1,18 @@
 #!/bin/bash
 version=`cat ../../version.txt`
+#dockerhub repo name
+hub=sistemasoperativostur/netoslab
+#get ONLY current directory name into a variable
+svc=$(pwd | awk -F/ '{print $NF}')
+#script to check docker is running or not
+docker info > /dev/null 2>&1
+if [ $? -ne 0 ]
+then
+	echo "Docker is not running ...starting docker"
+	mount /dev/sda /var/lib/docker
+	service docker start
+fi
+
 #puente=`docker network list | egrep lan1`
 #if [ -z "$puente" ]
 #then
@@ -19,21 +32,8 @@ then
 	docker rm $(docker ps -aq)
 fi
 
-imagenes=`docker images| egrep http | wc -l`
-if [ $imagenes -gt 0 ]
-then
-	docker rmi http-latoma
-	docker rmi http-merlo
-	docker rmi http-potrero
-	docker rmi http-laflorida
-	docker rmi http-desaguadero
-	docker rmi http-nogoli
-	docker rmi http-carrizal
-	docker rmi http-laslenias
-fi
-
-docker create --network=bridge --hostname latoma --name latoma -it --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" cliente:$version
-docker create --network=bridge --hostname potrero --name potrero -it --cap-add NET_ADMIN router:$version
+docker create --network=bridge --hostname latoma --name latoma -it --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" $hub-cliente:$version
+docker create --network=bridge --hostname potrero --name potrero -it --cap-add NET_ADMIN $hub-router:$version
 #
 
 xterm -T "latoma" -fa monaco -fs 11 -e "docker start -ia latoma" &

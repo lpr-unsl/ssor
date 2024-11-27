@@ -5,7 +5,7 @@ then
 	exit 
 fi
 
-contenedor=`docker ps -a|egrep $1 |  wc -l`
+contenedor=`docker ps -a|egrep $1 | wc -l`
 
 if [ $contenedor -eq 1 ]
 then

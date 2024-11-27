@@ -1,5 +1,18 @@
 #!/bin/bash
 version=`cat ../../version.txt`
+#dockerhub repo name
+hub=sistemasoperativostur/netoslab
+#get ONLY current directory name into a variable
+svc=$(pwd | awk -F/ '{print $NF}')
+#script to check docker is running or not
+docker info > /dev/null 2>&1
+if [ $? -ne 0 ]
+then
+	echo "Docker is not running ...starting docker"
+	mount /dev/sda /var/lib/docker
+	service docker start
+fi
+
 puente=`docker network list | egrep lan1`
 if [ -z "$puente" ]
 then
@@ -19,25 +32,14 @@ then
 	docker rm $(docker ps -aq)
 fi
 
-imagenes=`docker images| egrep squid | wc -l`
-if [ $imagenes -gt 0 ]
-then
-	docker rmi squid-latoma
-	docker rmi squid-merlo
-	docker rmi squid-potrero
-	docker rmi squid-laflorida
-	docker rmi squid-desaguadero
-	docker rmi squid-nogoli
-fi
-
-docker create --network=bridge --hostname latoma --name latoma -it --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" cliente:$version
-docker create --network=bridge --hostname clienteLan2 --name clienteLan2 -it --cap-add NET_ADMIN cliente-cli:$version
-docker create --network=bridge --hostname merlo --name merlo -it --cap-add NET_ADMIN cliente-cli:$version
-docker create --network=bridge --hostname clienteLan1 --name clienteLan1 -it --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" cliente:$version
-docker create --network=bridge --hostname potrero --name potrero -it --cap-add NET_ADMIN --privileged servidor:$version
-docker create --network=bridge --hostname laflorida --name laflorida -it --cap-add NET_ADMIN --privileged servidor:$version
-docker create --network=bridge --hostname desaguadero --name desaguadero -it --cap-add NET_ADMIN --privileged servidor:$version
-docker create --network=bridge --hostname nogoli --name nogoli -it --cap-add NET_ADMIN --privileged servidor:$version
+docker create --network=bridge --hostname latoma --name latoma -it --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" $hub-cliente:$version
+docker create --network=bridge --hostname clienteLan2 --name clienteLan2 -it --cap-add NET_ADMIN $hub-cliente-cli:$version
+docker create --network=bridge --hostname merlo --name merlo -it --cap-add NET_ADMIN $hub-cliente-cli:$version
+docker create --network=bridge --hostname clienteLan1 --name clienteLan1 -it --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" $hub-cliente:$version
+docker create --network=bridge --hostname potrero --name potrero -it --cap-add NET_ADMIN --privileged $hub-servidor-$svc:$version
+docker create --network=bridge --hostname laflorida --name laflorida -it --cap-add NET_ADMIN --privileged $hub-servidor-$svc:$version
+docker create --network=bridge --hostname desaguadero --name desaguadero -it --cap-add NET_ADMIN --privileged $hub-servidor-$svc:$version
+docker create --network=bridge --hostname nogoli --name nogoli -it --cap-add NET_ADMIN --privileged $hub-servidor-$svc:$version
 #
 docker network connect lan1 potrero --ip 192.168.1.1
 docker network connect lan1 merlo --ip 192.168.1.48
