@@ -32,7 +32,7 @@ service docker stop
 mount $dispositivo /var/lib/docker
 service docker start
 
-for nombre in servidor cliente cliente-cli router
+for nombre in servidor servidor-dns servidor-dhcp servidor-http cliente cliente-cli router
 do
 docker pull sistemasoperativostur/netoslab-$nombre:$version
 echo "listo $nombre"

@@ -1,5 +1,14 @@
 #!/bin/bash
 version=`cat ../../version.txt`
+#script to check docker is running or not
+docker info > /dev/null 2>&1
+if [ $? -ne 0 ]
+then
+	echo "Docker is not running ...starting docker"
+	mount /dev/sda /var/lib/docker
+	service docker start
+fi
+
 puente=`docker network list | egrep lan1`
 if [ -z "$puente" ]
 then
@@ -19,24 +28,12 @@ then
 	docker rm $(docker ps -aq)
 fi
 
-imagenes=`docker images| egrep dhcp | wc -l`
-if [ $imagenes -gt 0 ]
-then
-	docker rmi dhcp-latoma
-	docker rmi dhcp-clientelandos
-	docker rmi dhcp-potrero
-	#docker rmi dhcp-laflorida
-	docker rmi dhcp-merlo
-	docker rmi dhcp-clientelanuno
-	docker rmi dhcp-sanfelipe
-fi
-
 docker create --network=bridge --hostname latoma --name latoma -it --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" cliente:$version
 docker create --network=bridge --hostname clienteLan2 --name clienteLan2 -it --cap-add NET_ADMIN cliente-cli:$version
-docker create --network=bridge --hostname potrero --name potrero -it --cap-add NET_ADMIN --privileged servidor:$version
+docker create --network=bridge --hostname potrero --name potrero -it --cap-add NET_ADMIN --privileged servidor-dhcp:$version
 docker create --network=bridge --hostname merlo --name merlo -it --cap-add NET_ADMIN cliente-cli:$version
 docker create --network=bridge --hostname clienteLan1 --name clienteLan1 -it --cap-add NET_ADMIN cliente-cli:$version
-docker create --network=bridge --hostname sanfelipe --name sanfelipe -it --cap-add NET_ADMIN --privileged servidor:$version
+docker create --network=bridge --hostname sanfelipe --name sanfelipe -it --cap-add NET_ADMIN --privileged servidor-dhcp:$version
 
 #
 docker network connect lan1 potrero

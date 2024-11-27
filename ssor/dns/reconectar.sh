@@ -5,12 +5,12 @@ then
 	exit 
 fi
 
-contenedor=`docker ps -a|egrep $1 | egrep Exited | wc -l`
+contenedor=`docker ps -a|egrep $1 |  wc -l`
 
 if [ $contenedor -eq 1 ]
 then
         docker start $1
-	xterm -T "$1" -fa monaco -fs 11 -e "docker attach $1" &
+	xterm -T "$1" -fa monaco -fs 11 -e "docker exec -it $1 bash" &
 else
 	echo "no econtré ese contenedor desconectado de la pantalla"
 	exit 

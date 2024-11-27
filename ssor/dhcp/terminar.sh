@@ -8,8 +8,8 @@ then
 	docker rm $(docker ps -aq)
 fi
 
-service docker stop
-umount /var/lib/docker
+#service docker stop
+#umount /var/lib/docker
 
 #para saber los nombres de los contenedores que estan corriendo
 # docker ps  --format "table {{.Names}}"
