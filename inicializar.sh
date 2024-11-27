@@ -36,6 +36,7 @@ for nombre in servidor servidor-dns servidor-dhcp servidor-http cliente cliente-
 do
 docker pull sistemasoperativostur/netoslab-$nombre:$version
 echo "listo $nombre"
+#remove tag after all iniciar.sh script changes
 docker tag sistemasoperativostur/netoslab-$nombre:$version $nombre:$version
 done
 echo ""
