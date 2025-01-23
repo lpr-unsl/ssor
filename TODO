@@ -57,3 +57,6 @@ varios
 
 	MODIFICAR TP firewall ... installar ufw ... agregar 1 maquina en lan1 y otra en lan2 .. Sacar Desaguadero
 	MODIFICAR TP VPN ... sacar cliente grafico en "la florida" .. en todo caso ponerlo en "la toma" para ejecutar un cliente de correo POP
+
+	netOSLab
+	/usr/share/slim/themes/debian-softwaves/slim.theme
