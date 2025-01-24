@@ -1,5 +1,18 @@
 #!/bin/bash
-version=`cat ../../version.txt`
+version=`cat ../version.txt`
+#dockerhub repo name
+hub=sistemasoperativostur/netoslab
+#get ONLY current directory name into a variable
+svc=$(pwd | awk -F/ '{print $NF}')
+#script to check docker is running or not
+docker info > /dev/null 2>&1
+if [ $? -ne 0 ]
+then
+	echo "Docker is not running ...starting docker"
+	mount /dev/sda /var/lib/docker
+	service docker start
+fi
+
 puente=`docker network list | egrep lan1`
 if [ -z "$puente" ]
 then
@@ -19,31 +32,23 @@ then
 	docker rm $(docker ps -aq)
 fi
 
-imagenes=`docker images| egrep http | wc -l`
-if [ $imagenes -gt 0 ]
-then
-	docker rmi http-latoma
-	docker rmi http-merlo
-	docker rmi http-potrero
-	docker rmi http-laflorida
-	docker rmi http-desaguadero
-	docker rmi http-nogoli
-	docker rmi http-carrizal
-	docker rmi http-laslenias
-fi
-
-docker create --network=bridge --hostname latoma --name latoma -it --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" cliente:$version
-docker create --network=bridge --hostname potrero --name potrero -it --cap-add NET_ADMIN --privileged servidor:$version
-docker create --network=bridge --hostname laflorida --name laflorida -it --cap-add NET_ADMIN router:$version
-docker create --network=bridge --hostname desaguadero --name desaguadero -it --cap-add NET_ADMIN router:$version
-docker create --network=bridge --hostname carrizal --name carrizal -it --cap-add NET_ADMIN --privileged servidor:$version
-docker create --network=bridge --hostname laslenias --name laslenias -it --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" cliente:$version
+docker create --network=bridge --hostname latoma --name latoma -it --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" $hub-cliente:$version
+docker create --network=bridge --hostname merlo --name merlo -it --cap-add NET_ADMIN $hub-cliente-cli:$version
+docker create --network=bridge --hostname potrero --name potrero -it --cap-add NET_ADMIN $hub-router:$version
+docker create --network=bridge --hostname laflorida --name laflorida -it --cap-add NET_ADMIN $hub-router:$version
+docker create --network=bridge --hostname desaguadero --name desaguadero -it --cap-add NET_ADMIN --privileged $hub-servidor-$svc:$version
+docker create --network=bridge --hostname nogoli --name nogoli -it --cap-add NET_ADMIN --privileged $hub-servidor-$svc:$version
+docker create --network=bridge --hostname carrizal --name carrizal -it --cap-add NET_ADMIN $hub-router:$version
+docker create --network=bridge --hostname laslenias --name laslenias -it --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" $hub-cliente:$version
 #
-docker network connect lan2 latoma --ip 172.16.4.10
+docker network connect lan1 potrero --ip 192.168.1.1
+docker network connect lan1 merlo --ip 192.168.1.48
 docker network connect lan2 potrero --ip 172.16.4.1
+docker network connect lan2 latoma --ip 172.16.4.10
 docker network connect ppp1 potrero --ip 200.8.4.18
 docker network connect ppp1 laflorida --ip 200.8.4.17
 docker network connect man1 laflorida --ip 8.8.8.14
+docker network connect man1 nogoli --ip 8.8.8.8
 docker network connect man1 desaguadero --ip 8.8.8.1
 docker network connect ppp2 desaguadero --ip 170.0.2.6
 docker network connect ppp2 carrizal --ip 170.0.2.5
@@ -51,9 +56,11 @@ docker network connect lan3 carrizal --ip 10.22.0.1
 docker network connect lan3 laslenias --ip 10.22.0.150
 
 xterm -T "latoma" -fa monaco -fs 11 -e "docker start -ia latoma" &
+xterm -T "merlo" -fa monaco -fs 11 -e "docker start -ia merlo" &
 xterm -T "potrero" -fa monaco -fs 11 -e "docker start -ia potrero" &
 xterm -T "laflorida" -fa monaco -fs 11 -e "docker start -ia laflorida" &
 xterm -T "desaguadero" -fa monaco -fs 11 -e "docker start -ia desaguadero" &
+xterm -T "nogoli" -fa monaco -fs 11 -e "docker start -ia nogoli" &
 xterm -T "carrizal" -fa monaco -fs 11 -e "docker start -ia carrizal" &
 xterm -T "laslenias" -fa monaco -fs 11 -e "docker start -ia laslenias" &
 
@@ -66,24 +73,33 @@ do
 done
 
 docker exec -it latoma ip ro del default
+docker exec -it merlo ip ro del default
 docker exec -it potrero ip ro del default
 docker exec -it laflorida ip ro del default
 docker exec -it desaguadero ip ro del default
+docker exec -it nogoli ip ro del default
 docker exec -it carrizal ip ro del default
 docker exec -it laslenias ip ro del default
 
 docker exec -it latoma ip ro add default via 172.16.4.1
+docker exec -it merlo ip ro add default via 192.168.1.1
 docker exec -it potrero ip ro add default via 200.8.4.17
 docker exec -it carrizal ip ro add default via 170.0.2.6
 docker exec -it laslenias ip ro add default via 10.22.0.1
 
-docker exec -it laflorida ip ro add 192.168.1.0/23 via 200.8.4.18
+docker exec -it laflorida ip ro add 192.168.1.0/24 via 200.8.4.18
 docker exec -it laflorida ip ro add 172.16.4.0/23 via 200.8.4.18
 docker exec -it laflorida ip ro add 10.22.0.0/16 via 8.8.8.1
 
-docker exec -it desaguadero ip ro add 172.16.4.0/23 via 8.8.8.14
+docker exec -it desaguadero ip ro add 192.168.1.0/24 via 8.8.8.14
 docker exec -it desaguadero ip ro add 172.16.4.0/23 via 8.8.8.14
 docker exec -it desaguadero ip ro add 10.22.0.0/16 via 170.0.2.5
+
+docker exec -it nogoli ip ro add 192.168.1.0/24 via 8.8.8.14
+docker exec -it nogoli ip ro add 172.16.4.0/23 via 8.8.8.14
+docker exec -it nogoli ip ro add 10.22.0.0/16 via 8.8.8.1
+docker exec -it nogoli ip ro add 200.8.4.16/30 via 8.8.8.14
+docker exec -it nogoli ip ro add 170.0.2.4/30 via 8.8.8.1
 
 #para saber los nombres de los contenedores que estan corriendo
 # docker ps  --format "table {{.Names}}"

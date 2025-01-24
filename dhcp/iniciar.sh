@@ -1,5 +1,5 @@
 #!/bin/bash
-version=`cat ../../version.txt`
+version=`cat ../version.txt`
 #dockerhub repo name
 hub=sistemasoperativostur/netoslab
 #get ONLY current directory name into a variable

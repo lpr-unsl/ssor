@@ -1,5 +1,5 @@
 #!/bin/bash
-version=`cat ../../version.txt`
+version=`cat ../version.txt`
 #dockerhub repo name
 hub=sistemasoperativostur/netoslab
 #get ONLY current directory name into a variable
@@ -32,36 +32,29 @@ then
 	docker rm $(docker ps -aq)
 fi
 
-docker create --network=bridge --hostname latoma --name latoma -it --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" $hub-cliente:$version
-docker create --network=bridge --hostname clienteLan2 --name clienteLan2 -it --cap-add NET_ADMIN $hub-cliente-cli:$version
+docker create --network=bridge --hostname latoma --name latoma -it --cap-add NET_ADMIN --privileged $hub-servidor-$svc:$version
 docker create --network=bridge --hostname merlo --name merlo -it --cap-add NET_ADMIN $hub-cliente-cli:$version
-docker create --network=bridge --hostname clienteLan1 --name clienteLan1 -it --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" $hub-cliente:$version
 docker create --network=bridge --hostname potrero --name potrero -it --cap-add NET_ADMIN --privileged $hub-servidor-$svc:$version
 docker create --network=bridge --hostname laflorida --name laflorida -it --cap-add NET_ADMIN --privileged $hub-servidor-$svc:$version
-docker create --network=bridge --hostname desaguadero --name desaguadero -it --cap-add NET_ADMIN --privileged $hub-servidor-$svc:$version
 docker create --network=bridge --hostname nogoli --name nogoli -it --cap-add NET_ADMIN --privileged $hub-servidor-$svc:$version
-#
-docker network connect lan1 potrero --ip 192.168.1.1
+docker create --network=bridge --hostname desaguadero --name desaguadero -it --cap-add NET_ADMIN --privileged $hub-servidor-$svc:$version
+
 docker network connect lan1 merlo --ip 192.168.1.48
-docker network connect lan1 clienteLan1 --ip 192.168.1.160
+docker network connect lan1 potrero --ip 192.168.1.1
 docker network connect lan2 potrero --ip 172.16.4.1
 docker network connect lan2 latoma --ip 172.16.4.10
-docker network connect lan2 clienteLan2 --ip 172.16.5.200
 docker network connect ppp1 potrero --ip 200.8.4.18
 docker network connect ppp1 laflorida --ip 200.8.4.17
 docker network connect man1 laflorida --ip 8.8.8.14
 docker network connect man1 nogoli --ip 8.8.8.8
 docker network connect man1 desaguadero --ip 8.8.8.1
-docker network connect ppp2 desaguadero --ip 170.0.2.6
 
 xterm -T "latoma" -fa monaco -fs 11 -e "docker start -ia latoma" &
-xterm -T "clienteLan2" -fa monaco -fs 11 -e "docker start -ia clienteLan2" &
-xterm -T "merlo" -fa monaco -fs 11 -e "docker start -ia merlo" &
-xterm -T "potrero" -fa monaco -fs 11 -e "docker start -ia potrero" &
-xterm -T "clienteLan1" -fa monaco -fs 11 -e "docker start -ia clienteLan1" &
 xterm -T "laflorida" -fa monaco -fs 11 -e "docker start -ia laflorida" &
-xterm -T "desaguadero" -fa monaco -fs 11 -e "docker start -ia desaguadero" &
 xterm -T "nogoli" -fa monaco -fs 11 -e "docker start -ia nogoli" &
+xterm -T "desaguadero" -fa monaco -fs 11 -e "docker start -ia desaguadero" &
+xterm -T "potrero" -fa monaco -fs 11 -e "docker start -ia potrero" &
+xterm -T "merlo" -fa monaco -fs 11 -e "docker start -ia merlo" &
 
 not_running=`docker ps -a | egrep Created`
 while [ -n "$not_running" ]
@@ -72,28 +65,26 @@ do
 done
 
 docker exec -it latoma ip ro del default
-docker exec -it clienteLan2 ip ro del default
-docker exec -it merlo ip ro del default
-docker exec -it clienteLan1 ip ro del default
-docker exec -it potrero ip ro del default
 docker exec -it laflorida ip ro del default
-docker exec -it desaguadero ip ro del default
 docker exec -it nogoli ip ro del default
+docker exec -it desaguadero ip ro del default
+docker exec -it potrero ip ro del default
+docker exec -it merlo ip ro del default
 
 docker exec -it latoma ip ro add default via 172.16.4.1
-docker exec -it clienteLan2 ip ro add default via 172.16.4.1
 docker exec -it merlo ip ro add default via 192.168.1.1
-docker exec -it clienteLan1 ip ro add default via 192.168.1.1
 docker exec -it potrero ip ro add default via 200.8.4.17
 
 docker exec -it laflorida ip ro add 192.168.1.0/24 via 200.8.4.18
 docker exec -it laflorida ip ro add 172.16.4.0/23 via 200.8.4.18
+docker exec -it laflorida ip ro add 10.22.0.0/16 via 8.8.8.1
 
 docker exec -it desaguadero ip ro add 192.168.1.0/24 via 8.8.8.14
 docker exec -it desaguadero ip ro add 172.16.4.0/23 via 8.8.8.14
 
 docker exec -it nogoli ip ro add 192.168.1.0/24 via 8.8.8.14
 docker exec -it nogoli ip ro add 172.16.4.0/23 via 8.8.8.14
+docker exec -it nogoli ip ro add 10.22.0.0/16 via 8.8.8.1
 docker exec -it nogoli ip ro add 200.8.4.16/30 via 8.8.8.14
 docker exec -it nogoli ip ro add 170.0.2.4/30 via 8.8.8.1
 

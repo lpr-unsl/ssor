@@ -1,12 +1,12 @@
 # NETOSLAB - Laboratorio de Sistemas Operativos y Redes
 
 ### Motivación:
-Crear una herramienta fundamental para el desarrollo de las prácticas en las siguientes materias de la **FCFMYN - UNSL**:  
-- Servicios en Sistemas Operativos de Redes  
-- Introducción a la Seguridad de Redes  
+Crear una herramienta fundamental para el desarrollo de las prácticas en las siguientes materias de la **FCFMYN - UNSL**:
+- Servicios en Sistemas Operativos de Redes 
+- Introducción a la Seguridad de Redes 
 - Sistemas Operativos de Redes
 - Sistemas Operativos genericos (planificación, gestión de memoria)
-- ethical hacking  
+- ethical hacking 
 - toda aquella materia que requiera su utilizacion.
 
 ### Objectivos:
@@ -22,3 +22,4 @@ El diseño e implementación de un ambiente de simulación de redes de computado
  8. Almacenar toda la configuración realizada, para posteriores simulaciones.
  9. Cear una imagen booteable en DVD o USB  con todo el software necesario, para que sea facilmente transportable.
  10. Realizar ajustes para permitir la simulación en hardware limitado en capacidad de procesamiento y memoria principal.
+NETOSLAB_HOWTO.md

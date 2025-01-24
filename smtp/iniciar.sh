@@ -1,5 +1,5 @@
 #!/bin/bash
-version=`cat ../../version.txt`
+version=`cat ../version.txt`
 #dockerhub repo name
 hub=sistemasoperativostur/netoslab
 #get ONLY current directory name into a variable
@@ -33,28 +33,29 @@ then
 fi
 
 docker create --network=bridge --hostname latoma --name latoma -it --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" $hub-cliente:$version
-docker create --network=bridge --hostname laflorida --name laflorida -it --cap-add NET_ADMIN --privileged $hub-servidor-$svc:$version
-docker create --network=bridge --hostname nogoli --name nogoli -it --cap-add NET_ADMIN --privileged $hub-servidor-$svc:$version
-docker create --network=bridge --hostname desaguadero --name desaguadero -it --cap-add NET_ADMIN --privileged $hub-servidor-$svc:$version
-docker create --network=bridge --hostname potrero --name potrero -it --cap-add NET_ADMIN --privileged $hub-servidor-$svc:$version
-docker create --network=bridge --hostname merlo --name merlo -it --cap-add NET_ADMIN $hub-cliente-cli:$version
+docker create --network=bridge --hostname potrero --name potrero -it --cap-add NET_ADMIN --privileged $hub-servidor:$version
+docker create --network=bridge --hostname laflorida --name laflorida -it --cap-add NET_ADMIN $hub-router:$version
+docker create --network=bridge --hostname desaguadero --name desaguadero -it --cap-add NET_ADMIN $hub-router:$version
+docker create --network=bridge --hostname carrizal --name carrizal -it --cap-add NET_ADMIN --privileged $hub-servidor:$version
+docker create --network=bridge --hostname laslenias --name laslenias -it --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" $hub-cliente:$version
 #
-docker network connect lan1 merlo
-docker network connect lan1 potrero
-docker network connect lan2 potrero
-docker network connect lan2 latoma
-docker network connect ppp1 potrero
-docker network connect ppp1 laflorida
-docker network connect man1 laflorida
-docker network connect man1 nogoli
-docker network connect man1 desaguadero
+docker network connect lan2 latoma --ip 172.16.4.10
+docker network connect lan2 potrero --ip 172.16.4.1
+docker network connect ppp1 potrero --ip 200.8.4.18
+docker network connect ppp1 laflorida --ip 200.8.4.17
+docker network connect man1 laflorida --ip 8.8.8.14
+docker network connect man1 desaguadero --ip 8.8.8.1
+docker network connect ppp2 desaguadero --ip 170.0.2.6
+docker network connect ppp2 carrizal --ip 170.0.2.5
+docker network connect lan3 carrizal --ip 10.22.0.1
+docker network connect lan3 laslenias --ip 10.22.0.150
 
 xterm -T "latoma" -fa monaco -fs 11 -e "docker start -ia latoma" &
-xterm -T "laflorida" -fa monaco -fs 11 -e "docker start -ia laflorida" &
-xterm -T "nogoli" -fa monaco -fs 11 -e "docker start -ia nogoli" &
-xterm -T "desaguadero" -fa monaco -fs 11 -e "docker start -ia desaguadero" &
 xterm -T "potrero" -fa monaco -fs 11 -e "docker start -ia potrero" &
-xterm -T "merlo" -fa monaco -fs 11 -e "docker start -ia merlo" &
+xterm -T "laflorida" -fa monaco -fs 11 -e "docker start -ia laflorida" &
+xterm -T "desaguadero" -fa monaco -fs 11 -e "docker start -ia desaguadero" &
+xterm -T "carrizal" -fa monaco -fs 11 -e "docker start -ia carrizal" &
+xterm -T "laslenias" -fa monaco -fs 11 -e "docker start -ia laslenias" &
 
 not_running=`docker ps -a | egrep Created`
 while [ -n "$not_running" ]
@@ -65,21 +66,25 @@ do
 done
 
 docker exec -it latoma ip ro del default
-docker exec -it laflorida ip ro del default
-docker exec -it nogoli ip ro del default
-docker exec -it desaguadero ip ro del default
 docker exec -it potrero ip ro del default
-docker exec -it merlo ip ro del default
+docker exec -it laflorida ip ro del default
+docker exec -it desaguadero ip ro del default
+docker exec -it carrizal ip ro del default
+docker exec -it laslenias ip ro del default
 
-docker exec -it merlo ifconfig lan10 0.0.0.0
-docker exec -it potrero ifconfig lan10 0.0.0.0
-docker exec -it potrero ifconfig lan20 0.0.0.0
-docker exec -it latoma ifconfig lan20 0.0.0.0
-docker exec -it potrero ifconfig ppp10 0.0.0.0
-docker exec -it laflorida ifconfig ppp10 0.0.0.0
-docker exec -it laflorida ifconfig man10 0.0.0.0
-docker exec -it nogoli ifconfig man10 0.0.0.0
-docker exec -it desaguadero ifconfig man10 0.0.0.0
+docker exec -it latoma ip ro add default via 172.16.4.1
+docker exec -it potrero ip ro add default via 200.8.4.17
+docker exec -it carrizal ip ro add default via 170.0.2.6
+docker exec -it laslenias ip ro add default via 10.22.0.1
+
+docker exec -it laflorida ip ro add 192.168.1.0/23 via 200.8.4.18
+docker exec -it laflorida ip ro add 172.16.4.0/23 via 200.8.4.18
+docker exec -it laflorida ip ro add 10.22.0.0/16 via 8.8.8.1
+
+docker exec -it desaguadero ip ro add 172.16.4.0/23 via 8.8.8.14
+docker exec -it desaguadero ip ro add 172.16.4.0/23 via 8.8.8.14
+docker exec -it desaguadero ip ro add 10.22.0.0/16 via 170.0.2.5
+
 #para saber los nombres de los contenedores que estan corriendo
 # docker ps  --format "table {{.Names}}"
 
