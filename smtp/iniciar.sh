@@ -33,10 +33,10 @@ then
 fi
 
 docker create --network=bridge --hostname latoma --name latoma -it --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" $hub-cliente:$version
-docker create --network=bridge --hostname potrero --name potrero -it --cap-add NET_ADMIN --privileged $hub-servidor:$version
+docker create --network=bridge --hostname potrero --name potrero -it --cap-add NET_ADMIN --privileged $hub-servidor-$svc:$version
 docker create --network=bridge --hostname laflorida --name laflorida -it --cap-add NET_ADMIN $hub-router:$version
 docker create --network=bridge --hostname desaguadero --name desaguadero -it --cap-add NET_ADMIN $hub-router:$version
-docker create --network=bridge --hostname carrizal --name carrizal -it --cap-add NET_ADMIN --privileged $hub-servidor:$version
+docker create --network=bridge --hostname carrizal --name carrizal -it --cap-add NET_ADMIN --privileged $hub-servidor-$svc:$version
 docker create --network=bridge --hostname laslenias --name laslenias -it --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" $hub-cliente:$version
 #
 docker network connect lan2 latoma --ip 172.16.4.10
