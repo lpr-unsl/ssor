@@ -33,7 +33,7 @@ then
 fi
 
 docker create --network=bridge --hostname latoma --name latoma -it --cap-add NET_ADMIN --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" $hub-cliente:$version
-docker create --network=bridge --hostname potrero --name potrero -it --cap-add NET_ADMIN $hub-router:$version
+docker create --network=bridge --hostname potrero --name potrero -it --cap-add NET_ADMIN $hub-servidor-$svc:$version
 #
 
 xterm -T "latoma" -fa monaco -fs 11 -e "docker start -ia latoma" &
