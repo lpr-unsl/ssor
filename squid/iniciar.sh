@@ -80,10 +80,10 @@ docker exec -it laflorida ip ro del default
 docker exec -it desaguadero ip ro del default
 docker exec -it nogoli ip ro del default
 
-docker exec -it latoma ip ro add default via 172.16.4.1
-docker exec -it clienteLan2 ip ro add default via 172.16.4.1
-docker exec -it merlo ip ro add default via 192.168.1.1
-docker exec -it clienteLan1 ip ro add default via 192.168.1.1
+#docker exec -it latoma ip ro add default via 172.16.4.1
+#docker exec -it clienteLan2 ip ro add default via 172.16.4.1
+#docker exec -it merlo ip ro add default via 192.168.1.1
+#docker exec -it clienteLan1 ip ro add default via 192.168.1.1
 docker exec -it potrero ip ro add default via 200.8.4.17
 
 docker exec -it laflorida ip ro add 192.168.1.0/24 via 200.8.4.18
@@ -91,6 +91,7 @@ docker exec -it laflorida ip ro add 172.16.4.0/23 via 200.8.4.18
 
 docker exec -it desaguadero ip ro add 192.168.1.0/24 via 8.8.8.14
 docker exec -it desaguadero ip ro add 172.16.4.0/23 via 8.8.8.14
+docker exec -it desaguadero ip ro add 200.8.4.16/30 via 8.8.8.14
 
 docker exec -it nogoli ip ro add 192.168.1.0/24 via 8.8.8.14
 docker exec -it nogoli ip ro add 172.16.4.0/23 via 8.8.8.14
