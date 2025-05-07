@@ -1,0 +1,66 @@
+# Configuración para el Router Principal (8.8.8.12 / 172.16.4.7)
+# Archivo: /etc/keepalived/keepalived.conf
+
+# Configuración para la interfaz pública (man10)
+vrrp_instance VI_PUBLIC {
+    state MASTER
+    interface man10
+    virtual_router_id 51
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass secrewan
+    }
+    virtual_ipaddress {
+        8.8.8.14/24 dev man10  # IP virtual pública
+    }
+}
+
+# Configuración para la interfaz privada (lan20)
+vrrp_instance VI_PRIVATE {
+    state MASTER
+    interface lan20
+    virtual_router_id 52
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass secrelan
+    }
+    virtual_ipaddress {
+        172.16.4.9/24 dev lan20 # IP virtual privada
+    }
+}
+
+
+# Configuración para el Router Secundario (8.8.8.13 / 172.16.4.8)
+# Archivo: /etc/keepalived/keepalived.conf
+
+# Configuración para la interfaz pública (man10)
+vrrp_instance VI_PUBLIC {
+    state BACKUP
+    interface man10
+    virtual_router_id 51
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass secrewan
+    }
+    virtual_ipaddress {
+        8.8.8.14/24 dev man10 # IP virtual pública
+    }
+}
+
+# Configuración para la interfaz privada (lan20)
+vrrp_instance VI_PRIVATE {
+    state BACKUP
+    interface lan20
+    virtual_router_id 52
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass secrelan
+    }
+    virtual_ipaddress {
+        172.16.4.9/24 dev lan20 # IP virtual privada
+    }
+}
